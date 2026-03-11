@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --color-apple-bg: #f5f5f7;
+  --color-apple-text: #1d1d1f;
+  --color-apple-blue: #0071e3;
+  --color-apple-blue-hover: #0077ed;
+}
+
+body {
+  background-color: var(--color-apple-bg);
+  color: var(--color-apple-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Timetable CSS */
+.timetable-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.timetable-content {
+  width: 100%;
+  min-width: 800px;
+}
+
+.timetable-content table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 14px;
+}
+
+.timetable-content th {
+  background-color: #f9f9f9;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+  padding: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  border-right: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.timetable-content td {
+  padding: 16px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  border-right: 1px solid rgba(0, 0, 0, 0.04);
+  vertical-align: top;
+}
+
+.timetable-content tr:last-child td {
+  border-bottom: none;
+}
+
+.timetable-content td:last-child,
+.timetable-content th:last-child {
+  border-right: none;
+}
+
+/* Style the specific cells that might have classes from the original HTML */
+.timetable-content .rgHeader {
+  background-color: #f9f9f9;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+}
+
+.timetable-content .rgRow td,
+.timetable-content .rgAltRow td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.timetable-content .rgAltRow {
+  background-color: #fafafa;
+}
+
+/* Remove any inline styles that might break our layout */
+.timetable-content table[style] {
+  width: 100% !important;
+}
+
+/* Make links look like normal text or styled nicely */
+.timetable-content a {
+  color: var(--color-apple-text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.timetable-content a:hover {
+  color: var(--color-apple-blue);
+}
