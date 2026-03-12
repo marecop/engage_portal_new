@@ -1,0 +1,108 @@
+import { useState, useEffect } from "react";
+import { motion } from "motion/react";
+import { PageTransition } from "../components/PageTransition";
+import { Activity, Clock, Loader2, Hash } from "lucide-react";
+
+export default function Activities() {
+  const [activities, setActivities] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchActivities = async () => {
+      try {
+        const cached = sessionStorage.getItem("activitiesData");
+        if (cached) { setActivities(JSON.parse(cached)); setIsLoading(false); return; }
+        const response = await fetch("/api/activities", { 
+          headers: { "Authorization": `Bearer ${localStorage.getItem("authToken")}` }
+        });
+        if (response.status === 401) { setError("登录已过期"); return; }
+        if (!response.ok) throw new Error("Failed");
+        const data = await response.json();
+        let parsed = data?.d ? (() => { try { return JSON.parse(data.d); } catch { return data.d; } })() : data;
+        let final = Array.isArray(parsed) ? parsed : parsed?.Data || parsed?.schedules || [];
+        sessionStorage.setItem("activitiesData", JSON.stringify(final));
+        setActivities(final);
+      } catch { setError("无法加载活动"); }
+      finally { setIsLoading(false); }
+    };
+    fetchActivities();
+  }, []);
+
+  return (
+    <PageTransition>
+      <div className="space-y-8">
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+          <h1 className="text-[32px] font-bold tracking-tight" style={{ color: "var(--text-primary)" }}>活动</h1>
+          <p className="text-[14px] mt-1" style={{ color: "var(--text-secondary)" }}>校园活动与社团参与记录。注意！！此网站仅能获取已经报名的CCA信息，无法从此网站book任何CCA，请前往<a href="https://ulinkcollege.engagehosted.cn/Activities/ActivitySchedulesPP.aspx" target="_blank" rel="noopener noreferrer">原版Engage门户</a>（点我）book活动。</p>
+        </motion.div>
+
+        <div
+          className="rounded-2xl border overflow-hidden min-h-[300px] relative"
+          style={{ background: "var(--bg-primary)", borderColor: "var(--border)", boxShadow: "var(--card-shadow)" }}
+        >
+          {isLoading ? (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Loader2 className="w-7 h-7 animate-spin" style={{ color: "var(--text-tertiary)" }} />
+            </div>
+          ) : error ? (
+            <div className="absolute inset-0 flex items-center justify-center text-[14px]" style={{ color: "var(--danger)" }}>{error}</div>
+          ) : activities.length === 0 ? (
+            <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ color: "var(--text-tertiary)" }}>
+              <Activity className="w-12 h-12 mb-4 opacity-30" />
+              <p className="text-[14px]">暂无活动记录</p>
+            </div>
+          ) : (
+            <div className="divide-y" style={{ borderColor: "var(--border)" }}>
+              {activities.map((act, i) => {
+                let dateStr = "时间待定";
+                if (act.ScheduleDate?.StartDate) {
+                  dateStr = act.ScheduleDate.StartDate.split("T")[0];
+                  if (act.ScheduleDate.EndDate) dateStr += ` 至 ${act.ScheduleDate.EndDate.split("T")[0]}`;
+                } else if (act.StartDate || act.Date) dateStr = act.StartDate || act.Date;
+                const id = act.ID || act.ActivityID || "N/A";
+                const name = act.Name || act.ActivityName || act.Title || "未知活动";
+                return (
+                  <motion.div
+                    key={id !== "N/A" ? id : i}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.03, duration: 0.3 }}
+                    className="flex flex-col sm:flex-row sm:items-center justify-between px-6 py-5 transition-colors duration-150"
+                    onMouseEnter={e => (e.currentTarget.style.background = "var(--sidebar-hover)")}
+                    onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
+                  >
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span
+                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-semibold"
+                          style={{ background: "var(--bg-secondary)", color: "var(--text-tertiary)" }}
+                        >
+                          <Hash className="w-3 h-3" />{id}
+                        </span>
+                        <h4 className="text-[15px] font-semibold truncate" style={{ color: "var(--text-primary)" }}>{name}</h4>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-3 mt-1.5 text-[12px]" style={{ color: "var(--text-secondary)" }}>
+                        <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" />{dateStr}</span>
+                        {act.phaseType !== undefined && <span>阶段: {act.phaseType}</span>}
+                        {act.BookingCompletePercentage !== undefined && <span>完成度: {act.BookingCompletePercentage}%</span>}
+                      </div>
+                    </div>
+                    <div className="mt-3 sm:mt-0 sm:ml-4">
+                      <button
+                        className="px-4 py-2 rounded-full text-[13px] font-semibold transition-all duration-200"
+                        style={{ background: "var(--accent-soft)", color: "var(--accent)" }}
+                      >
+                        查看详情
+                      </button>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
+    </PageTransition>
+  );
+}

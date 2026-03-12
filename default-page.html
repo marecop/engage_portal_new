@@ -1,0 +1,1516 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir='ltr'>
+<head id="ctl00_MasterPageHeadTag"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2.0, user-scalable=yes, viewport-fit=cover" /><meta name="format-detection" content="telephone=no" /><title>
+	Engage
+</title><link href="../CSS/bootstrap/themes/pupilportal/PupilPortalMain.css" rel="stylesheet" type="text/css" media="all" /><link href="../CSS/Print.css" rel="stylesheet" type="text/css" media="print" /><link href="../CSS/bootstrap/themes/pupilportal/pupilPortal.css" rel="stylesheet" type="text/css" media="all" /><link href="../CSS/bootstrap/themes/pupilportal/Primary.css" rel="stylesheet" type="text/css" media="all" /><link href="../CSS/bootstrap/themes/pupilportal/font-awesome.min.css" rel="stylesheet" /><link href="../CSS/bootstrap/bootstrap.min.css" rel="stylesheet" media="all" /><link href="../CSS/bootstrap/themes/pupilportal/bootstrap-theme.min.css" rel="stylesheet" media="all" /><link href="../CSS/bootstrap/bootstrap-responsive.min.css" rel="stylesheet" /><link href="../CSS/bootstrap/bootstrap-multiselect.min.css" rel="stylesheet" media="all" /><link rel="stylesheet" href="../CSS/bootstrap/blueimp-gallery.min.css" media="all" /><link rel="stylesheet" href="../CSS/bootstrap/themes/pupilportal/editor.min.css" media="all" />
+
+    <!--[if IE 9]>
+        <link rel="stylesheet" href="../CSS/bootstrap/themes/pupilportal/ie9cssfixes.min.css" /><link rel="stylesheet" href="../CSS/bootstrap/themes/pupilportal/ace-ie.min.css" />
+    <![endif]-->
+
+    <script language="javascript" type="text/javascript" src="/JS/jquery-3.6.0.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/plugins.js"></script>
+    <script language="javascript" type="text/javascript" src="/globalResources.axd"></script>
+    <script language="javascript" type="text/javascript" src="/JS/extensions.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/AjaxHelpers.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/floatyScrollbar.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/TelerikHelpers.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/functions.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/validation.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/moment.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/AutoKillAjax.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/DMSEvents.js"></script>
+	<script language="javascript" type="text/javascript" src="/JS/FreezeHeaders.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/resizesensor.js"></script>
+    <script language="javascript" type="text/javascript" src="/serviceWorkerInit.js"></script>
+    <script language="javascript" type="text/javascript"src="/JS/pwa/PushNotifications.js"></script>
+
+    <link href="/Skins/StyleFilter/ComboBox/ComboBox.StyleFilter.css" rel="stylesheet" />
+    <script type="text/javascript" src="../JS/ActivityModels.js"></script>
+    <script type="text/javascript" src="../JS/activitiesHomepageWidget.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.sidebar-collapse').on('click', function () {
+                location.reload();
+            });
+        });
+    </script>
+    <link id="ctl00_pnJS_lnkFootprint" rel="stylesheet" type="text/css" media="all"></link>
+
+    <style type="text/css">
+        #outerHolder { height: 100%; width:1000px; }
+        #contentHolder { height:100%; position:relative; }
+    </style>  
+              
+<script language="javascript" type="text/javascript">
+var _hdnUnsavedDataWarningClientID = 'ctl00_hdnUnsavedDataWarningEnabled';
+</script><script language="javascript" type="text/javascript">window.onbeforeunload = closeIt;</script>
+
+    <script type="text/javascript">
+        var setupOpen = false;
+
+        // initiate the scrollable
+        $(function () {
+            // fix collapse button being around the wrong way on sidebar
+            if ($('.sidebar').hasClass('menu-min')) {
+                $('.sidebar-collapse i').removeClass('fa-angle-double-left').addClass('fa-angle-double-right');
+            }
+
+            // initialize scrollable with mousewheel support
+            $(".scrollable").scrollable({ vertical: true, mousewheel: true });
+
+            if (document.addEventListener && !window.requestAnimationFrame) {
+                topOfPage();
+            }
+            var userAgent = window.navigator.userAgent;
+
+            if (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i)) {
+                $('.sidebar').addClass('paddingTop20');
+            }
+        });
+
+        function topOfPage() {
+            // IE9 Tweak, Remove page up button if no vertical scrollbar
+            if ($("body").height() > $(window).height()) {
+                $('.btn-scroll-up').attr('style', 'visibility: visible;');
+            } else {
+                $('.btn-scroll-up').attr('style', 'visibility: hidden;');
+            }
+
+        }
+
+        function ToggleDropDown(dropdownID) {
+            var container = $('div[id$="setupContainer"]'), list = $('#setupList');
+
+            if (setupOpen === false) {
+                container.animate(
+                    {
+                        width: '+235',
+                        height: '+40',
+                        borderTopColor: '#000',
+                        borderLeftColor: '#000',
+                        borderBottomColor: '#000',
+                        borderRightColor: '#000',
+                        backgroundColor: '#fff'
+                    }, 'slow', function () {
+                        list.fadeIn('fast');
+                    }
+                );
+                setupOpen = true;
+            } else {
+                list.fadeOut('fast');
+                container.animate(
+                    {
+                        width: '24',
+                        height: '24',
+                        borderTopColor: 'transparent',
+                        borderLeftColor: 'transparent',
+                        borderBottomColor: 'transparent',
+                        borderRightColor: 'transparent',
+                        backgroundColor: 'transparent'
+                    }, 'slow'
+                );
+                setupOpen = false;
+            }
+        }
+
+        $(window).resize(function () {
+            if (document.addEventListener && !window.requestAnimationFrame) {
+                topOfPage();
+            }
+        });
+
+    </script>
+    <script language="javascript" type="text/javascript" src="/JS/bootstrap/themes/pupilportal/ace-extra.min.js"></script> 
+<link href="/Telerik.Web.UI.WebResource.axd?d=Db2ZRa0u9QJnOGajvtH9pwvryMpaD29q_EoAYiS7hvavwEaWDPLuYKD3X903Kvyy-mcASVPptCsT-U4fzuElGm64Muvy_4uL8mOIbvlDfUNmRZkTCGVG5W_rPNQL5cry0-cDdw2&amp;t=638841342637275692&amp;compress=1&amp;_TSM_CombinedScripts_=%3b%3bTelerik.Web.UI%2c+Version%3d2021.3.1111.45%2c+Culture%3dneutral%2c+PublicKeyToken%3d121fae78165ba3d4%3aen-GB%3ab406acc5-0028-4c73-8915-a9da355d848a%3a6de05185%3af730aca1" type="text/css" rel="stylesheet" /></head>
+<body id="ctl00_MasterPageBodyTag" class="height100pc" data-version="pupilportal" onload="startTimer(6900000)" style="background-image: url(&#39;/UserUploads/PupilFiles/3373/Background/R6011826.jpg&#39;); background-repeat: repeat; background-position: left top;background-size: cover !important">
+
+    <form name="aspnetForm" method="post" action="./default.aspx" id="aspnetForm">
+<div>
+<input type="hidden" name="ctl00_ctl18_TSSM" id="ctl00_ctl18_TSSM" value="" />
+<input type="hidden" name="ctl00_ScriptManager1_HiddenField" id="ctl00_ScriptManager1_HiddenField" value="" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="SVAEdvp18+YDg7DIPedYAy0N+yDOiLh67aA4VRMESVgymwBWtc8QDHh1D2owjlgUf4vWO3IFI45j/beGbJ7boLIvyz3gSkKom1pus9omx36qcqZpSKrJSKWFNEoS46fobVihDBJObubTYEkJ3+G9Fjbf6hJMxmeaUGpdk1dPzYXnPy1w48LmDKXvJRcbAiIj2r6LldJ/W3UitKBMZ+MB/0ousTzdyMc/lDdcnKyhW9xb5p2DajShYvDitHJEE+3jO2kXGp+OtdMfpJXpNvSDKGQ38ksN9R9M0AK4oe87zemigfbtKEtYw2RbbVgt1eBA3Rpxl99bN3bNhuk4okyI3jPcFMjHFo7/f47lz5jpZHq0Sjz7a2JbDL/Bd9tT53gZmAsGJVCD1PzrFOintPVBSxI6tC+2Zi0bOP8MosjcdXha51yAsxMj+Qxerb3jMSfgRbHZhgSI9S+iqxV5IDAgekDqRu0fykiDLniZk4lCYtyKThGcGcaPQEYuxmkQFewJQz+wRsqV6TeerpzAwC8IMADjRFZCMnGk6hHCnYRWnuqjCQltZ7S6oC2iP/gUOvDi68MeR+p6DbV43f7xPdq38DpI6Kh2fuw30TmIy/+aMG/U2t+iasWoVROaG3z/EmSa0Ax4OHFqn8KpX7WG9AFMV/yvd648rvKhvpY7DHkvfhL0VfWh6KSvDAamQeBteOMvwhL+qq1a6wyV8OOnEuo726HSz9MOZ84nL/URxYStbIubPYJi9c9V4EYnf0kvLQi2XUeiRqUS5ERoUntPG5ERHdrrb9C9ohwTqRVoWdF1IfW8WMtuaboUi59hwTkXeBdn9GglMYsXhs/9c76iOvAUJjRB2CXA28pwy2MboUdVQvfELKdPZxyjCXQDlMLXaS9q2Rx5rdp3nmN8FinNdcsdHGKIggCaiOhbgdFA27wU+O4QlfbCVYvquqKwA+C45pcBuYhwILu7CN4+MBgtm93s7ZCQPw3EGw58PwcuXHeuljmueaV7Dn1wkhA1drOFkx9Upv0UL5j7hcTCJtfU1QjuKyZodg+nMgcbSJ1N2jPzRU2M+5bruszZsoZ9IOOD4ScVsYsDENZQktA0CzcpWw2S9kF4RfaC3uqGRZnBeCH4n1MtyVVFG/hZN29yjVZeaZe12V0M/EF7mkzCjMDZF8PWhdFLfCcnzhiQU3ujz6DsKJwiQusJ1WwXA9pSqRp3CDubqW9zv2VLzwtUEE4TVLU+i9xPlnVlSpbvtVJMGE+E3xSuHXHMNRvY3Cnj0P/53MMexMjgMfXpghwi1npzuf9+0nclBpn3b+hTrqgFFtxJs100HEpDtT6fhXMvNXWdRWFew/S4/hUausdUNYA5VE+J+DQ3iYha3PAMkf4uQqpvhzbfUzBn6ARF1Hq0AXbzLGLLIL7wONkhN8jpE7tA/ooH1O/Fn9TgaWJau7wJ1bNECRkBvODLvJM19YSq41vpj3TrZKLtLzioyLZ3QBS1SFzTnWwAPvv3WTWutYZGjaROVD9Rwt1beadyHkEa0//gUm9CqM5cD1eC20bSHNdnQi0UByF5c4fdF7rVHcNuGkvmALYjZRAB/HrwuEsQqpbcAzZlwY9GI+nJqva5cVdc0h6JYQaPLMuW3ZTTUXYsxf8yQPr5j9al169Ln/tTVpiIAOqBEQdjpwbzH8pKN6qbpGb4+XOsxT52w33UHBuErYdVLm1/Til7Fh6LsfE69NQOmEBW8IVCAXtvCWpRkdjB/9TBaadOWZ+SYGz8ENbH8N9wT2mTHWi1n0w7lp4SmKdxcLGcOh5U3CDWV5PXlJXgqC4u20GDRocHPCVH+HfaDq/1kGXbvbjlWPVXKukVyEWlG2CTMqAfRt83HYXApzoqUoLe5hNwzMSPfdQ+zf3OYI13Kgm4VpiLMokTRtpidWwRJMu6qdNXc0l+zOTGlJQGtiRVyt8MVNGVwmd++dPLxqFGMTaIXcVGiJH2hO2HV+47xjTEjlHTIozW1QZZIAm+WfxeObtES7t7Dnhsvi/IqXi5p9U1wKUXrDR2+e/ZDDRQ2OW/llYuTZ2d16DPYT35WfNbdisEMgGisw7Kyo9lZdYkzuuOq9mb3wCrsCL0bYJwoIQFcv1lDCG2kyP8Rto8yrRdYYJwcF1FiiMuMPpKOch8h7ZjmHUfPUvQ0PXV7JZapQO9qGUHfoWQwsn88O8jAo7KQQ8k4Ng1zLlT4Q0oWfxi0C6xzhQCPek7nXFgVoGolqo6ND6jV6Y1mEJGFEI00nimB749MqvOZCoGs6Hy+GeKYcaxs8O/U396q4JSFxg/XrQMPb1BI5XJPgWiD89whCvoA1P+HepwfDCpy9V6AW7NCq8eUPlwlTdroutB4v86t10xHVaNN94B+0Pt5Eg+GNHHIPk+I35Iq/nvqkTFQtcjvVrDuqVj3Mslp/TWvcce7dVl3Y+/opJCcH1Sg19wyCev8C33XjyeEbq9XkVFvEC6y1CqlDvU4LHOkMNWsfegaughMErhfaRmBonCNK+V+Skw/2r+ZX3d8QBZWIx7VDKJw36wGikH9x7bsG9JYw0PEMb63OtHktOvp/IofYWmIngkaJIHrmKuhm2V0sLg06wZ5AeRD14AkgpXkGCpKk9H/XhzQXOXNPIF1j5iSqLG0jglFoJAOr/StJUMFGlqv7C+/8kIoRrUNRHke78MN/3iV/N4fDD3JJ81uqN8Q8kmYM2VQ5imw7Xg2U7b7WK31rl/ZiMCiElfZX25/Z/hRxpRhY9LXd5l0TCaR1nQn7UDvSZ3QSGcV4orDcDQYqRJFvNfHZRxWGEjxR/Nx5cQFW++276lmWyQYew0kV6cqivfPq6LtNZSKOtPCZdk5KsXQVnFymIgBRkYkXXCra4YGOaN0rVUXD3mZ8SAfmD2p9yW9qCH8E/xfJeOlHu1vapajLIrvA6n5XhnlmZE/PaL6NLtFME+vvq2yYGPkkL/PzrYxYLZHc03lIVM0QqjnkK8KugybG2n2WN5GD/R4wE2zuliVxy5PkiIY02wGYQvb7xcHlHVEwWQ33NLxr9FrUOKFEa/oHHE4/wVhMsoOy1+DssajcO587q7ww6749SYZYvGRWCW4GZnobLZNdP3CoMDbXlvgOYYH/1e+TdMxhlDp0aauhesoKJK+xs2VhLYsdjDLX0LoMd+Q3KmlqtCnxTDHYqS5FInux7YwKa+GNgZsNuXyTZBHhBGc5c6zzaewPSnrIMxQEVVLEMikCw5Ct7zErm59QAj8aFI10NgdcUcJ2l9SDmm+fnqnfAEdJwow35d038Gc/Dxt7oYEsE7yjHmYCl3YpUKQMQ0HExNlZjuqFojr+K8a7c0pUAfJLtKdX2mabGfdn15wR2mGLil2hMvAPUJThWjUHs5dkIjyc13+ipr8xJQvngp0zhYVVO8xMiLuXgD7hUlJ8l7FCkAURBcIrvVzQ79x4t5pzs3Rkh8DK3kYAme3fSjgrh0dhLQcU2P2eoyfgFKwYv+wYSmG9NcR/YnceU+80scSpxnCoC32V1YjNcjUSN2+Km8Z8oT0i3aSbcFJGyTd7uPh/EqN14hKwj53smEDXtR/EnU6Ff38/BNOKiGTbU/517G4UGEmgzGuvl2HSFeLSaDewrJF3lTRYIugqaVqc9x8u294QfXukzXHj8XZyybgN4OOGD0ageSWzIcO8B+GPzQJy/SlrUWz6bVZZKEi/qsa7y7HEQ9VprJyoLQFpVFR+cTFGY8cIuh6oEt/Y4CRjNv98U7S+8cjnKcPBybe3pv8PtndjuTcg0noM1i8xTY3zdHDcYrtZzqA9ApYYQEIagukhhCiF+0aw61TSVxlF04hyxmLE9IZz2ZUjKOD0G+1RsqUAN9NklBwwCu06meZWrEEU7EL5h8QTFDjSMJChQvppX9TvSZhzCGWh0BKPmmrLGbFLiIlIPwyL2R1vveILyMGjy77u1+uoW6mRXfXStTWFtjEGGWMr8SJ3jIPAK8B6fGbyMqtzPzL5UgiKLMz3yW/mAYu7OYtesV+oR3/NJYnK+Yc7CYzlHtAzQBjYN5Uci2zjJteUL1w4Zu9vhhBS2FSbvcTqM5LLArAYZtC5bQTJKykhJk+TyeBa8DZxwYqnpauKWUGDvhyXO8ev96vKEttdrMPjPYpTtnr3NWZp0YK90Y3dtBUCpKt7VsMCzRWfOJak4O1ccpy+jHiB+/I6R5c/cf0W6nAe6QmuuweolaeRAXrOmRmqo2g/f8Uhcu5wzNYOdhpZdbi6S4Rk8dOkaVgdTRJ9x658DhdIBWJO9kDr6/IL+yZ4OmgY9JbDKSBYS6m99Uk0TmKXS+S/VJ/eIT7V+80AcJwZHQLQzKnmRKf8nnVn5ZQwQEVMqR60iiS9Cu4ivnrAWEo+uSWGUWQ1W7kSCtrAv1vX7Hd2F2/h5lFc0Ck659wZiiYgrqn3IcoYR+RKkIJmdofoHYoKAtYn8hghkihd7Ot7qFHQZbXQZd0XSkVAvktpDYTLp+pb5MxFco0OxZTjzZE4ByM2/wfkJzNxE9t/jec1il5YjdeRwXbC9I/JHEOLB6m7J0/H44cbGNZF8qg7hMRJa7Ww3JQLPm/5bhSTiftVMSLTbWx1f/oSFq7MMM99xUBak4iM3K4Kds8XeAoGWXJki6Il3ehJ46K62xXbqV1hBKi3bui1WqAYG9H6OxU3+hvSvU+awfgyHmT1WgZAC2xuqykE4T03BxnvNqtcUKOmXMwV7wpp5KOrdGzqGw5bUSKMvvHmw5mHZzx02znNfgvG6n811xFv8A4QJ6dhZiz6w5KtPZzXhQ6y9OaPnmqWSbzvYLVKfQRhZS7BQOmh5FBogwXLDziLkrtOB4pVVysPIZPB6f4atDhFGKj45vP2rsf0twk9emd+D3ujFTulMKrTwuseOJRm/c65TMjf53NB0yuzlA0Rq1Fk0v7yJ5G4tj711B0/KgCHbfyMvWHZRlLlXDZRPMDKPVwMXfrVmc8XXM7Lpam6Eh/m6sdXGRykIAdCNw5v0fupnc7BS8/oaB6MvW6DK5y0jwl3ee+6Iy9qXJlUrAov95wk49lXLk1pp8C5xrbJBdMsl9Q0Bj9YZo8wLTICC9JWMDc5f5VyN+KkonvfA6p+hWZJ2fGUrFtxE4ZGmonYsBBk2DcfCEb6TqExxftOPdcIB0/FrbU9GoWe8XeFxmc3vnUH082WbpTuDsiKfJRnA9EI7CPeATgbyQX4xk02BZqpeXF7+mc1XyUTw+HnRUTXjMiBeMqLT6M96DXG84LkSEVuCdABveOGcSXnyxok9MLc9Aqb/MAIm4TbkakHddeO/urPREBZtlz3XRVBhmLKWEAOLYicmtEww2g7NbjCxMpDwZ7jeu5hyPAmg2/Ryf3wZSU7SE8mpbE2HR2UZv1LpCRufuKKEeIE7EmzFIKTN0OVyDJiy58sk+zZOD/SFdO/JkL9xFvjp5KVM1n8gMwGA4zULifHkqVMGf1p3dQGRslXgkL4svLuVoy1wk15KlTh6CU/chXpIy+iM0YrzinJsYK6kx603bhby9/WEBc3ID4TzYo3nFNgo5znjT/WSdPkjVwprLaqmV8g1SjWPvJuiQIA2NcSIUUMdLtgvxh5IkvB8NYDJ7fP4vH4qtK7zqJu12RoKJHpJgGqnm8PyVBwRDIcyh5SjRGHWgrXKg0cuxn5cibO2YOwgj9ydK82/QFFvAUtmvzH20mv5gHQGToMCd+wmSiKxlQbUgdppBc/kFFVtmCUfJ1FLvgYtC/nNJKBNHSnyyz3LVObq25Fxqjmyb2Y5ahOXTdoxk8dmkk/4HXuR6QOy8Qu4WCiB8jg0x7u00auQeplofWTg/JzgKUM59DdesNpGPgSPzXaMBHNBuIGkrf8s5+fpZDAuMZw1La457Afoi9pj9UhxWAPA8P3XavHGA87v1kz108wXj22LSVJwtO8VzMenB7m+fvunscnvfIXLJu3ema4sDOnxWiv2hHasr0qemeYePRWteJL6vH7JhTqJjrq35pA0r8krkFWrmAwLQ9knfDLE2umwBQQIKQFbFXn8LcjRMOm2Etj05GbqdqpF4XhdAX87DW7SSge1H4ubq0GL1OUDxFCvmpeRl1d2XEq8+2/oSjKtzb4EMmpygvJojy8YV3azVe/QX2ogIsyN5anhq2LJhoC+w6/xBbCVkK/B9szgxSW2VE8UeHzVYw/MdNPBK7AdGpbkt8lVgosI9muHT58awk764aLKIkl3eb7hH8c7k/+U1flcu3C83mjwzt+0Mc1o63VaZkXyEfIZFyXwVwQlLrko39AGAwTU6s1kJEPIbFjpw7YrvF3qIvHpuo3kcGrIrh643thywOt2qZImQKq9cPVRd96xGL++IXTe5ULPNX4TW5wWkUJYUNC4gAOO9K0iPnVZmD8Wd4eoK0huWUyKM9uvWkHO9xjtq9r7l40Y4Q2VQgBHXfRqttxlkMroHjtSpZuPGy/5wfAvnMCnmthxQTxhwSxzlIJOmpqYhTSjxAw2XbXVSSYu99lIc/YpU5H2/aJkHrdgAdwEykXdRLx+WuOruEGk7nEbxb0XVnZiH+J0iMxeAQEKRumBmYO1eVJO8BzuJU+dtmo89NNcCMeF7Hc3bULh16P1zLeIAiWqMY1DSC+d/lzZ1D1OOq+/i9UoEzp0EWcFD" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=C83_LzTupU-pWoTqss1Zzm8JI9cpoWNyQzlFRH_99EJdsU8_nog4uW9iXzBVUSHK92IJ4sBasEZpVYsgCeYjtHIn7hA1&amp;t=638901824248157332" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+var __cultureInfo = {"name":"en-GB","numberFormat":{"CurrencyDecimalDigits":2,"CurrencyDecimalSeparator":".","IsReadOnly":false,"CurrencyGroupSizes":[3],"NumberGroupSizes":[3],"PercentGroupSizes":[3],"CurrencyGroupSeparator":",","CurrencySymbol":"¥","NaNSymbol":"NaN","CurrencyNegativePattern":1,"NumberNegativePattern":1,"PercentPositivePattern":1,"PercentNegativePattern":1,"NegativeInfinitySymbol":"-∞","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":".","NumberGroupSeparator":",","CurrencyPositivePattern":0,"PositiveInfinitySymbol":"∞","PositiveSign":"+","PercentDecimalDigits":2,"PercentDecimalSeparator":".","PercentGroupSeparator":",","PercentSymbol":"%","PerMilleSymbol":"‰","NativeDigits":["0","1","2","3","4","5","6","7","8","9"],"DigitSubstitution":1},"dateTimeFormat":{"AMDesignator":"AM","Calendar":{"MinSupportedDateTime":"\/Date(-62135596800000)\/","MaxSupportedDateTime":"\/Date(253402271999999)\/","AlgorithmType":1,"CalendarType":1,"Eras":[1],"TwoDigitYearMax":2029,"IsReadOnly":false},"DateSeparator":"/","FirstDayOfWeek":1,"CalendarWeekRule":2,"FullDateTimePattern":"dd MMMM yyyy HH:mm:ss","LongDatePattern":"dd MMMM yyyy","LongTimePattern":"HH:mm:ss","MonthDayPattern":"d MMMM","PMDesignator":"PM","RFC1123Pattern":"ddd, dd MMM yyyy HH\u0027:\u0027mm\u0027:\u0027ss \u0027GMT\u0027","ShortDatePattern":"dd/MM/yyyy","ShortTimePattern":"HH:mm","SortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd HH\u0027:\u0027mm\u0027:\u0027ss\u0027Z\u0027","YearMonthPattern":"MMMM yyyy","AbbreviatedDayNames":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"ShortestDayNames":["Su","Mo","Tu","We","Th","Fr","Sa"],"DayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"AbbreviatedMonthNames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],"MonthNames":["January","February","March","April","May","June","July","August","September","October","November","December",""],"IsReadOnly":false,"NativeCalendarName":"Gregorian Calendar","AbbreviatedMonthGenitiveNames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],"MonthGenitiveNames":["January","February","March","April","May","June","July","August","September","October","November","December",""]},"eras":[1,"A.D.",null,0]};//]]>
+</script>
+
+<script src="/ScriptResource.axd?d=pfW1IV8j9tIMhIRwwo3TLAJKSVJG5-lVtqb2sUK4gr2UnprzRpGeZUI4AiG3LUZaDJV_HzundSXcMKipyEkXr9Rqx2mwHRuZrVFG0WLkmSoNllkP0&amp;t=ffffffffe4ec58b9" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=G4p4AucxW2umanS7OY4J9wVURzT41WC4HSjbjPUc3ZX6OLZv0ylb7R9chRLVh52RtRkAxUFpSVJnOejYz_01dRbsPxrHP_p6kZ2tSK9Kil8fa8iAp-kyNGMjoTlpRsbP0dd2ug2&amp;t=ffffffffe4ec58b9" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=_M82Rd9dG1BxE3yQN3U3ZhEjrXQZti11cyuauy_rMW9P_wndLyC-8PIvFwQbAP8VmyRvh3kr4zury-IPrl9wrVqWeY0O6KZxBgXnZDpKZ1psVK8ieNUA2SH5sq2J5Q8Yjooixo566j_8cUSwRtKwPa6yQYw1&amp;t=ffffffffdb75e8fc" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=yVvW8OW8C0lAKRKguWdXQWJnTQYKtg8TM1sWOzhx9NgOJMiZc9RGlAHGq1g04Gm_3Q88XLgvtoPbItgMsQXLzJJ2HfoItdR63ycGO4cF1ivKoIJsQStVTeImnuYWjAd4RfVDnA2&amp;t=ffffffffdb75e8fc" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=RrBZh0rZSxWmU2VDL9YaLk-CTWWswDIGgBiZx76PKkK4S7Pq8AXD5V_lRDN802hmkiqsqrd-XZcPI-ZCYh9rarl8IDot3M7v9j0ISGA7VipfqG2xUKWnyVxhhxl40Gr7QSs0_A2&amp;t=ffffffffdb75e8fc" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=lYHy62PK0PcaA341uRAwEKD_nRwgsTErWKGyimy424h2JkFHRzgERdju76QiK1wpHXeoC9GJiFiGPQtdmJ6cMCXUeFYseaV7iijOtfsDUC5RA_-2jFxx6rIeL0GTSnuQ-o2Z4A2&amp;t=ffffffffdb75e8fc" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=jW05OQIKmjNfapCCKyciIZtf4tupyyXj_hNnR7mMAb1KPtW8TbFN34Iu5RJ6TNOaoqHq4_C4C1bhN-oZig77IWJ5Ss8aj68r8G1r29VLucTZ-VoncT9UC9ITOIMW9kgKlUymbrccQ8_asjaFj8AnYxylSlnuZYMoF3o21RZbaoPkag_b0&amp;t=ffffffffdb75e8fc" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=4WKxeDs4G-vc7HNFCZnfwHnRaTFDgQ4iYEtdmzVMQSf0VVRyLn2-D8vNSVtV6j3_VlJirIdM6xAwEZGW29djRRFtu4tu9_zPb5voPTAjeYcVUesDOqRLhDwYDneQGSv8-BYyfA8xPpR9_eVFztEbk4RcaxA1&amp;t=ffffffffdb75e8fc" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=nOUGVAvtVk2o7UcQ3EtZp3jfMvAPbahDCzNIvDmkkZdsL_3UQqVGGCXm102mX1GvOUbAOmbXMdhzRLbfvce4fGQ-dlH64BY7d3oud7zCEekWmJpHSXWhKwxihT-SJa4feealggClDF_jvpfnYjvhubGnzZdjXOMvfKu0XUf-Ce-uhck20&amp;t=ffffffffdb75e8fc" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=9Pll-GxO7IK9sFzHCWDmthLXD70JGUpOQUWjWDq0nBmBrZzN9F9o7rQ9bHy5EWP76XS-rhS7vkilxy9_3XS6k7vvG9iZoTFPpJn06Z1GuiOAODAdkiDCImxn2nRYWXM4WloOug2&amp;t=ffffffffdb75e8fc" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=_BMEIENXn0oAdFuX2G11XkmkTrGUVZmrzegR6tOxkN5IGIYEDnAEyeuYVq_xfys7raOKAfOnJxkeli8dZ5kUnodYzphhPVOTViJ8dY2MFXZshrHtDdsB7ksf8oWtjBK6zbmVT_j0VAMFaRmXvteGBt3MTdk1&amp;t=ffffffffdb75e8fc" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="28F90D8D" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="fg884Fz2eBg9YpCBRwgE2Ug0SJ7H8P0HIs7Yne6RLgHbtnk2tjK5n5nO0fSa6acLkTyeJwiJUttdxo41x6X5tvCjYmKZ3kpqDBZGqnShoVxmgp5VHDm4n/+hUmIJTBh97YNI0J5mh97mN/GCzZUCruThoCWUyYurLAS+wlQeQQ6NwqWeSKktHrqcO52o+YgVVu0oanwDH5uwPOri2nkPNnjt8C7s2mIOwfdLIIpclwGuVzJJkgF9VTvNZdk6p4rltr6FhexX2LkJbp1RnrZ45sv9Ay39KGk/hn8p6O6lWXJj2Yf2" />
+</div>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'aspnetForm', ['tctl00$PageContent$myClassesWidget$upnMyClasses','','tctl00$PageContent$pnlTimetable',''], ['ctl00$PageContent$btnTimetableUpdate',''], [], 90, 'ctl00');
+//]]>
+</script>
+
+
+        <input type="hidden" name="ctl00$hdnUnsavedDataWarningEnabled" id="ctl00_hdnUnsavedDataWarningEnabled" value="false" />
+        <input type="hidden" name="ctl00$hdnHorizontalScrollPosition" id="ctl00_hdnHorizontalScrollPosition" />
+        <input type="hidden" name="ctl00$hdnVerticalScrollPosition" id="ctl00_hdnVerticalScrollPosition" />
+        <input type="hidden" name="ctl00$hdnMaxFiles" id="ctl00_hdnMaxFiles" value="5" />
+        <input type="hidden" name="ctl00$hdnMaxSize" id="ctl00_hdnMaxSize" value="1048576" />
+
+        <div class="progressContainer" style="display:none;">
+            <div class="progress-container">
+                <div class="top-border">
+                    <div class="top-border-color"></div>
+                </div>
+            </div>
+        </div>
+
+        
+            <div class="navbar navbar-fixed-top" id="navbar">
+                <div id="navbar-container" class="navbar-container">
+                    <button data-target="#sidebar" id="menu-toggler" class="navbar-toggle menu-toggler pull-left" type="button">
+                        <span class="sr-only">Toggle sidebar</span>
+
+                        <span class="icon-bar"></span>
+
+                        <span class="icon-bar"></span>
+
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="navbar-header pull-left">
+                        <a class="navbar-brand" href="/VLE">
+                            <small>
+                                Student Portal
+                            </small>
+                        </a>
+                    </div>
+
+                    <div role="navigation" class="navbar-buttons navbar-header pull-right">
+                        <ul class="nav ace-nav">
+                            
+                            <li>
+                                <a id="subscribe" href="#" class="ace-icon fa fa-bell-slash icon-animated-vertical" style="display: none; color: #ffffff; font-size: 15px;" title="Subscribe to Push Notifications"></a>
+                                <a id="unsubscribe" href="#" class="ace-icon fa fa-bell" style="display: none; color: #ffffff; font-size: 15px;" title="Unsubscribe from Push Notifications"></a>
+                                <a id="disableSubscribe" href="#" class="ace-icon fa fa-bell-slash subscribePupilButtonDisabled" style="display: none; font-size: 15px;" title="The browser doesn`t support push notifications"></a>
+                                <a id="disabledBrowser" href="#" class="ace-icon fa fa-bell-slash subscribePupilButtonDisabled" style="display: none; font-size: 15px;" title="Push notifications are blocked by the browser"></a>
+                            </li>
+                            
+
+                            <li class="grey">
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                                    <img alt="Fred's Photo" src="/DBImage.axd?type=pupil&pid=wbDPGBLaosgCAfitoDds7w%3d%3d" class="nav-user-photo">
+                                    <span class="user-info">
+                                        <small>Welcome,</small>
+                                        <span id="ctl00_lblUserName">Zhangjun Huang</span>
+                                    </span>
+
+                                    <i class="ace-icon fa fa-caret-down"></i>
+                                </a>
+
+                                <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                                    <li id="ctl00_liBackgroundImage" class="js-backgroundlink">
+                                        <a href="/VLE/PupilImageUpload.aspx?type=background" class="height35 lineHeight2">Change Background</a>
+                                    </li>
+                                    <li id="ctl00_liResetPassword">
+                                            <a href="/ResetPassword.aspx?menulink=1" class="height35 lineHeight2">Reset Password</a>
+                                        </li>
+                                    <li id="ctl00_liLogout">
+                                        <a id="ctl00_lnkLogout" class="height35 lineHeight2" href="/Login.aspx?action=logout">Log out</a>					        
+                                    </li>
+                                    
+                                    <li>
+                                        
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- /.navbar-container -->
+            </div>               
+        
+
+        <div id="main-container" class="main-container">
+            <script type="text/javascript">
+                try {
+                    ace.settings.check('main-container', 'fixed');
+                } catch (e) {
+                }
+            </script>
+                        
+                <div class="sidebar responsive" id="sidebar">
+                    
+                    <script type="text/javascript">
+                        try {
+                            ace.settings.check('sidebar', 'fixed');
+                        } catch (e) {
+                        }
+                    </script>
+                    <ul class="nav nav-list">
+                        <li id="ctl00_lnkPupilDetails" class="greyPane">
+                            <b class="arrow"></b>
+                            <a class="dropdown-toggle" href="#">
+                                <i class="menu-icon white fa fa-user"></i>
+                                <span class="menu-text white bold"> Student Details </span>
+
+                                <b class="arrow white fa fa-angle-down"></b>
+                            </a>
+
+                            <ul id="ctl00_lstDetailSubmenu" class="submenu"><li class='greyPane'><a href='/VLE/pupildetails.aspx?detail=PupilDetails' class='white paddingLeft35'><i class='menu-icon fa fa-info-circle'></i>Student Details</a><b class='arrow'></b></li><li class='greyPane'><a href='/VLE/pupildetails.aspx?detail=Assessments2' class='white paddingLeft35'><i class='menu-icon fa fa-tachometer'></i>Assessments</a><b class='arrow'></b></li><li class='greyPane'><a href='/VLE/pupildetails.aspx?detail=Points' class='white paddingLeft35'><i class='menu-icon fa fa-plus'></i>Points</a><b class='arrow'></b></li><li class='greyPane'><a href='/VLE/pupildetails.aspx?detail=Assessments' class='white paddingLeft35'><i class='menu-icon fa fa-files-o'></i>Assessment Reports</a><b class='arrow'></b></li><li class='greyPane'><a href='/VLE/pupildetails.aspx?detail=UDF' class='white paddingLeft35'><i class='menu-icon fa fa-question-circle'></i>Additional Information</a><b class='arrow'></b></li></ul>
+                        </li>
+                    
+                        <li id="ctl00_liViewReportComments" class="greyPane">
+                                <a href="/VLE/MyReportComments.aspx">
+                                    <i class="menu-icon white fa fa-comments"></i>
+                                    <span class="menu-text white bold"> My Report Comments </span>
+                                </a>
+                            </li>
+                                       
+                        <li class="greyPane">
+                            <a href="/VLE/mydms.aspx">
+                                <i class="menu-icon white fa fa-folder-open"></i>
+                                <span class="menu-text white bold"> My DMS </span>
+                            </a>
+                        </li> 
+                                         
+                            <li class="greyPane">
+                                <a href="/VLE/WeeklyTimetable.aspx">
+                                    <i class="menu-icon white fa fa-tasks"></i>
+                                    <span class="menu-text white bold"> Weekly Timetable </span>
+                                </a>
+                            </li>
+                        <li id="ctl00_mnuActivities" class="greyPane">
+                            <a href="/Activities/ActivitySchedulesPP.aspx">
+                                <i class="menu-icon white fa fa-bullseye"></i>
+                                <span class="menu-text white bold"> Activities </span>
+                            </a>
+                        </li>
+                                     
+                            <li class="greyPane">
+                                <a href="/VLE/ViewDaybook.aspx?tt=zeGGsHJ%2f4n2wAp3GENe%23ww%3d%3d">
+                                    <i class="menu-icon white fa fa-book"></i>
+                                    <span class="menu-text white bold"> Daybook </span>
+                                </a>
+                            </li>
+                        
+                            <li class="greyPane">
+                                <b class="arrow"></b>
+                                <a class="dropdown-toggle" href="#">
+                                    <i class="menu-icon white fa fa-globe"></i>
+                                    <span class="menu-text white bold"> Websites </span>
+
+                                    <b class="arrow white fa fa-angle-down"></b>
+                                </a>
+
+                                <ul class="submenu">
+                                    <li class='greyPane'><a href='https://www.ulinkcollege.com/' target="_blank" rel="nofollow noopener noreferrer" class='white paddingLeft35'><i class='menu-icon fa fa-external-link'></i>School Website</a><b class='arrow'></b></li><li class='greyPane'><a href='https://guischina.sharepoint.com/sites/ulcstudentportal' target="_blank" rel="nofollow noopener noreferrer" class='white paddingLeft35'><i class='menu-icon fa fa-external-link'></i>Student Landing Page</a><b class='arrow'></b></li>
+                                </ul>
+                            </li>  
+                                                   
+                    </ul>
+
+                    <div id="sidebar-collapse" class="sidebar-toggle sidebar-collapse">
+                        <i data-icon2="ace-icon fa fa-4x fa-angle-double-right white" data-icon1="ace-icon fa fa-4x fa-angle-double-left white" class="ace-icon fa fa-4x fa-angle-double-left white"></i>
+                    </div>
+                    
+                    <script type="text/javascript">
+                        try {
+                            ace.settings.check('sidebar', 'collapsed');
+                        } catch (e) {
+                        }
+                    </script>
+                </div>
+            
+
+            <div class="main-content">
+                <div class="main-content-inner">  
+                    
+    <div class="page-content">
+        
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="row-fluid">
+                    
+
+                    <div class="span3 paddingBottom10">
+                        <div id="ctl00_PageContent_pnlActivities">
+	
+                            <div class="widget-box-secondary rounded-corners animated-panel zoomIn" style="animation-delay: 0.2s;">
+                                <div class="widget-body rounded-corners">
+                                    <div class="widget-main">
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <div class="secondary-widget-header">
+                                                    <a href="/Activities/ActivitySchedulesPP.aspx">Activities</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row-fluid">
+                                            <div class="myClassesControlAcademicYear vle span12">
+                                                <span id="previousActivity" class="fa fa-4x fa-caret-left pull-left blue-text hand marginTopMinus16"></span>
+                                                <span id="nextActivity" class="fa fa-4x fa-caret-right pull-right blue-text hand marginTopMinus16"></span>
+                                                <a id="scheduleName" class="paddingBottom5 bold"></a>
+                                            </div>
+                                        </div>
+                                        <div class="row-fluid">
+                                            <div class="span12 activitiesControlContent paddingTop10">
+                                                <img id="js-sectionLoading" src="/images/loading_trans.gif" style="display: block; margin: 50px auto;" alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+</div>
+                    </div>
+
+                    <div class="span4 paddingBottom10">
+                        <div id="ctl00_PageContent_divClasses">
+                            <div class="widget-box-secondary rounded-corners animated-panel zoomIn" style="animation-delay: 0.2s;">
+                                <div class="widget-body rounded-corners">
+                                    <div class="widget-main">
+                                        <div id="ctl00_PageContent_myClassesWidget_upnMyClasses">
+	   
+        <input type="hidden" name="ctl00$PageContent$myClassesWidget$hdnAcademicYear" id="ctl00_PageContent_myClassesWidget_hdnAcademicYear" value="2025" /> 
+
+                    <div class="row-fluid">                
+                        <div class="span12">
+                            <div class="secondary-widget-header">
+                                My Classes
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12 myClassesControlAcademicYear vle">
+                            <a id="ctl00_PageContent_myClassesWidget_imgPrevAcademicYear" class="fa fa-4x fa-caret-left pull-left blue-text marginTopMinus16 js-prevyear middle" href="javascript:__doPostBack(&#39;ctl00$PageContent$myClassesWidget$imgPrevAcademicYear&#39;,&#39;&#39;)"></a>
+                            <span class="bold">2025/2026</span>
+                            <a id="ctl00_PageContent_myClassesWidget_imgNextAcademicYear" disabled="disabled" class="fa fa-4x fa-caret-right pull-right blue-text marginTopMinus16 js-nextyear middle default"></a>                           
+                        </div>
+                    </div>
+
+            <div class="myClassesControlBody">
+                <div class="center paddingTop10 js-ajax-loading none">
+                    <img id="ctl00_PageContent_myClassesWidget_Image1" src="/images/loading_trans.gif" style="border-width:0px;" />
+                </div>
+                <!-- root element for scrollable -->
+                <div class="scrollable">   
+   
+                    <!-- root element for the items -->
+                    <div class="items">  
+                        
+                                <div>                
+                
+                                <table class="table no-margin no-border">
+                                <tr class=''>
+                                    <td class="myClassesName" style="width: 48px;"></td>
+                                    <td class="black myClassesName nowrap" style='border-right: 10px solid #FFFFFF;'>
+                                        <a id="ctl00_PageContent_myClassesWidget_rptMyClasses_ctl00_lnkSubjectGraphic" disabled="disabled" class="left js-subject">Chemistry/化学</a>
+                                    </td>
+                                </tr>
+                                </table>
+                                                    
+                            
+                                                
+                
+                                <table class="table no-margin no-border">
+                                <tr class=''>
+                                    <td class="myClassesName" style="width: 48px;"></td>
+                                    <td class="black myClassesName nowrap" style='border-right: 10px solid #FFFFFF;'>
+                                        <a id="ctl00_PageContent_myClassesWidget_rptMyClasses_ctl01_lnkSubjectGraphic" disabled="disabled" class="left js-subject">Chinese/中文</a>
+                                    </td>
+                                </tr>
+                                </table>
+                                                    
+                            
+                                                
+                
+                                <table class="table no-margin no-border">
+                                <tr class=''>
+                                    <td class="myClassesName" style="width: 48px;"></td>
+                                    <td class="black myClassesName nowrap" style='border-right: 10px solid #FFFFFF;'>
+                                        <a id="ctl00_PageContent_myClassesWidget_rptMyClasses_ctl02_lnkSubjectGraphic" disabled="disabled" class="left js-subject">Computer Science/计算机科学</a>
+                                    </td>
+                                </tr>
+                                </table>
+                                                    
+                            
+                                                
+                
+                                <table class="table no-margin no-border">
+                                <tr class=''>
+                                    <td class="myClassesName" style="width: 48px;"></td>
+                                    <td class="black myClassesName nowrap" style='border-right: 10px solid #FFFFFF;'>
+                                        <a id="ctl00_PageContent_myClassesWidget_rptMyClasses_ctl03_lnkSubjectGraphic" disabled="disabled" class="left js-subject">Edexcel AS Pure Math/Edexcel AS纯数</a>
+                                    </td>
+                                </tr>
+                                </table>
+                                                    
+                            
+                                                
+                
+                                <table class="table no-margin no-border">
+                                <tr class=''>
+                                    <td class="myClassesName" style="width: 48px;"></td>
+                                    <td class="black myClassesName nowrap" style='border-right: 10px solid #FFFFFF;'>
+                                        <a id="ctl00_PageContent_myClassesWidget_rptMyClasses_ctl04_lnkSubjectGraphic" disabled="disabled" class="left js-subject">English as second language year 2/英语</a>
+                                    </td>
+                                </tr>
+                                </table>
+                                    </div>                
+                            
+                                <div>                
+                
+                                <table class="table no-margin no-border">
+                                <tr class=''>
+                                    <td class="myClassesName" style="width: 48px;"></td>
+                                    <td class="black myClassesName nowrap" style='border-right: 10px solid #FFFFFF;'>
+                                        <a id="ctl00_PageContent_myClassesWidget_rptMyClasses_ctl05_lnkSubjectGraphic" disabled="disabled" class="left js-subject">Homeroom</a>
+                                    </td>
+                                </tr>
+                                </table>
+                                                    
+                            
+                                                
+                
+                                <table class="table no-margin no-border">
+                                <tr class=''>
+                                    <td class="myClassesName" style="width: 48px;"></td>
+                                    <td class="black myClassesName nowrap" style='border-right: 10px solid #FFFFFF;'>
+                                        <a id="ctl00_PageContent_myClassesWidget_rptMyClasses_ctl06_lnkSubjectGraphic" disabled="disabled" class="left js-subject">Physical Education/体育</a>
+                                    </td>
+                                </tr>
+                                </table>
+                                                    
+                            
+                                                
+                
+                                <table class="table no-margin no-border">
+                                <tr class=''>
+                                    <td class="myClassesName" style="width: 48px;"></td>
+                                    <td class="black myClassesName nowrap" style='border-right: 10px solid #FFFFFF;'>
+                                        <a id="ctl00_PageContent_myClassesWidget_rptMyClasses_ctl07_lnkSubjectGraphic" disabled="disabled" class="left js-subject">Physics/物理</a>
+                                    </td>
+                                </tr>
+                                </table>
+                                                    
+                            
+                                                
+                
+                                <table class="table no-margin no-border">
+                                <tr class=''>
+                                    <td class="myClassesName" style="width: 48px;"></td>
+                                    <td class="black myClassesName nowrap" style='border-right: 10px solid #FFFFFF;'>
+                                        <a id="ctl00_PageContent_myClassesWidget_rptMyClasses_ctl08_lnkSubjectGraphic" disabled="disabled" class="left js-subject">PSHE/个人/社交/健康课</a>
+                                    </td>
+                                </tr>
+                                </table>
+                                                    
+                            
+                                                
+                
+                                <table class="table no-margin no-border">
+                                <tr class=''>
+                                    <td class="myClassesName" style="width: 48px;"></td>
+                                    <td class="black myClassesName nowrap" style='border-right: 10px solid #FFFFFF;'>
+                                        <a id="ctl00_PageContent_myClassesWidget_rptMyClasses_ctl09_lnkSubjectGraphic" disabled="disabled" class="left js-subject">Seminar/升学指导</a>
+                                    </td>
+                                </tr>
+                                </table>
+                                    </div>                
+                            
+                                <div>                
+                
+                                <table class="table no-margin no-border">
+                                <tr class=''>
+                                    <td class="myClassesName" style="width: 48px;"></td>
+                                    <td class="black myClassesName nowrap" style='border-right: 10px solid #FFFFFF;'>
+                                        <a id="ctl00_PageContent_myClassesWidget_rptMyClasses_ctl10_lnkSubjectGraphic" disabled="disabled" class="left js-subject">Sociology/社会学</a>
+                                    </td>
+                                </tr>
+                                </table>
+                                                    
+                            
+                                                
+                
+                                <table class="table no-margin no-border">
+                                <tr class=''>
+                                    <td class="myClassesName" style="width: 48px;"></td>
+                                    <td class="black myClassesName nowrap" style='border-right: 10px solid #FFFFFF;'>
+                                        <a id="ctl00_PageContent_myClassesWidget_rptMyClasses_ctl11_lnkSubjectGraphic" disabled="disabled" class="left js-subject">Spanish/西班牙语</a>
+                                    </td>
+                                </tr>
+                                </table>
+                                    </div>                
+                            
+                    </div>
+                </div>
+
+
+                <div class="right myClassesWidgetNav">
+                    <div class="myClassesWidgetNavTop">
+                        <!-- "previous page" action -->
+                        <a class="prev left">
+                            <img class="padding5" src="/images/icons/upArrowGrey.gif" />
+                        </a>
+                    </div>
+                    <div class="myClassesWidgetNavMiddle">
+                    </div>
+                    <div class="myClassesWidgetNavBottom">
+                        <!-- "next page" action -->
+                        <a class="next right">
+                            <img class="padding5" src="/images/icons/downArrowGrey.gif" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+    
+</div>
+
+<script type="text/javascript">
+    var prm = Sys.WebForms.PageRequestManager.getInstance();
+    prm.add_pageLoaded(pageLoaded);
+
+    function pageLoaded() {
+        $(".js-subject").off('click').on('click', function () {
+            var isDisabled = $(this).is('[disabled=disabled]');
+            if (!isDisabled) {
+                hideProgress();
+            }           
+        });
+        $(".js-prevyear").off('click').on('click', function () {
+            hideProgress();
+        });
+        $(".js-nextyear").off('click').on('click', function () {
+            hideProgress();
+        });
+    }
+
+    function hideProgress() {
+        $('.js-update-progress').hide();
+        $('.sidebar-collapse').hide();
+        $('.myClassesControlBody').find('.items').fadeOut('slow', function () {
+            $('.myClassesControlBody').find('.js-ajax-loading').fadeIn('slow');
+            var myClassesInterval = setInterval(function() {
+                if ($('.myClassesControlBody').find('.items').is(':visible')) {
+                    clearInterval(myClassesInterval);
+                    $('.myClassesControlBody').find('.js-ajax-loading').fadeOut();
+                    $('.sidebar-collapse').show();
+                }
+            }, 500);
+        });       
+    }
+</script>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ctl00_PageContent_divTimetable" class="row-fluid" style="padding-bottom: 25px;">
+                    <div class="span12 js-widget-timetable">
+                        <div id="ctl00_PageContent_pnlTimetable">
+	
+                                <input type="submit" name="ctl00$PageContent$btnTimetableUpdate" value="" id="ctl00_PageContent_btnTimetableUpdate" class="js-widget-refresh hide" />
+                                
+<script src="../JS/ActivityFunctions.js"></script>
+<script src="/JS/ActivityBookingResponsive.js"></script>
+<script>
+    var width;
+    var height;
+    $(window).on("load", function() {
+        width = $('.js-timetable-div').innerWidth();
+        scrollToCurrentLesson();
+    });
+
+    function scrollToCurrentLesson() {
+        var containerID = 'scrollTT' + '2026-03-12';
+        var containerEl = document.getElementById(containerID);
+        if (containerEl != null) {          
+            //container is a span, has table tr td(s) inside
+            var table = containerEl.childNodes[0];
+            if (table != null) {
+                var tableCells = table.childNodes;
+                var current = table.getElementsByClassName('now');
+                if (current.length > 0) {
+                    //now scroll to it
+                    var leftPos = current[0].offsetLeft;
+                    $('#' + containerID).animate({ scrollLeft: leftPos });
+                }
+            }
+        }
+    }
+
+    function scrollTimetable(elementID, direction) {
+        var scrollValue = "+=200";
+
+        if (direction == "left") {
+            scrollValue = "-=200";
+        }
+        $('#' + elementID).animate({ scrollLeft: scrollValue });
+    }
+
+    function showNextDailyTTRotatorItem(direction) {
+        var rotator = $find('ctl00_PageContent_dailyTimetable_RadRotator1');
+
+        if ($("[id$='removeDummyDayHiddenField']").val() == 1) { // see if the dummy day needs to be removed   
+            rotator.removeRotatorItem(0);
+            var itemIndex = (direction == Telerik.Web.UI.RotatorScrollDirection.Up ? 0 : 1); // required item determined by whether first navigation is up or down            
+            rotator.set_currentItemIndex(itemIndex);
+
+            $("[id$='removeDummyDayHiddenField']").val("0"); // set a flag so that we know the dummy day does not need to be removed
+        }
+        rotator.showNext(direction);
+    }
+
+    var currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+    var startDate = new Date(2026, 2, 9);
+    var endDate = new Date(2026, 2, 15);
+    var workingDays = '1|2|3|4|5'.split("|");
+    var useWorkingWeek = 'True';
+
+    var rotator = null;
+
+    var resizeId;
+
+    $(window).resize(function() {
+        clearTimeout(resizeId);
+        resizeId = setTimeout(doneResizing, 500);
+    });
+
+    function doneResizing() {
+        var newWidth = $('.js-timetable-div').innerWidth();
+        if (newWidth != width) {
+            refreshTimetable();
+        }
+        width = newWidth;
+    }
+
+    $('.sidebar-toggle').on('click', function() {
+        if (!$('.sidebar').hasClass('display')) {
+            refreshTimetable();
+        }
+    });
+
+    function refreshTimetable(){
+        // check if widget are already refreshing before triggering again
+        if (!$('#refreshMessage').is(":visible")) {
+            $('.sidebar-collapse').hide();
+            $('.js-widget-refresh').trigger('click');
+        }
+    };
+
+    function setNavigation() {
+        $('.js-timetable-div').fadeOut('slow', function() {
+            var screen = $(window).width();
+            if (screen <= 750) {
+                $('.js-tt-direction-left')
+                    .removeClass('span1')
+                    .addClass('hide');
+                $('.js-tt-direction-right')
+                    .removeClass('span1')
+                    .addClass('hide');
+                $('div.timetable').addClass('hScroll').attr('style','');
+                $('.timetable > table').attr('style', 'width: 100%;height: 100%; margin-top: -5px;');
+                $('.js-swipe-message').fadeIn('slow');
+                $('.rrItem').attr('style', 'border-top: 1px solid #ccc !important;');
+            } else {
+                $('.timetable > table').attr('style', 'width: 100%;height: 100%;');
+                $('.js-tt-direction-left')
+                    .removeClass('hide')
+                    .addClass('span1');
+                $('.js-tt-direction-right')
+                    .removeClass('hide')
+                    .addClass('span1');
+                $('div.timetable').removeClass('hScroll');
+                $('.js-swipe-message').fadeOut('slow');
+                $('.rrItem').attr('style', '');
+            }           
+        });
+        $('.js-timetable-div').fadeIn('slow', function() {
+            $('.sidebar-collapse').show();
+        });
+    }
+
+    var showPopover = function() {
+        $(this).popover('show');
+    },
+    hidePopover = function() {
+        $(this).popover('hide');
+    };
+
+    $(document).ready(function() {
+        initDate();
+        scrollToCurrentLesson();
+        miscTasks();
+    });
+
+    Sys.WebForms.PageRequestManager.getInstance().add_endRequest(miscTasks);
+
+    function miscTasks() {
+            // remove original titles
+            $('.activity-link').parent().parent().removeAttr('title', '');
+            //wire up activity clicks
+            $('.activity-link').off('click').on('click', function() {
+                var activityId = $(this).attr('id');
+                showActivityDetail(activityId);
+            });
+    }
+
+    function initDate() {
+        var ttDiv = document.getElementById("dailyTimetableDate");
+        if (ttDiv != null)
+            ttDiv.innerHTML = currentDate.toDateString();
+    }
+
+    function subtractDay() {
+        currentDate.setDate(currentDate.getDate() - 1);
+        if (currentDate < startDate)
+            currentDate.setTime(endDate.valueOf());
+    }
+
+    function addDay() {
+        currentDate.setDate(currentDate.getDate() + 1);
+        if (currentDate > endDate)
+            currentDate.setTime(startDate.valueOf());
+    }
+
+    function previousDay() {
+        subtractDay();
+        if (useWorkingWeek.toLowerCase() == 'true') {
+            while ($.inArray(currentDate.getDay().toString(), workingDays) < 0) {
+                subtractDay();
+            }
+        }
+        document.getElementById("dailyTimetableDate").innerHTML = currentDate.toDateString();
+    }
+
+    function nextDay() {
+        addDay();
+        if (useWorkingWeek.toLowerCase() == 'true') {
+            while ($.inArray(currentDate.getDay().toString(), workingDays) < 0) {
+                addDay();
+            }
+        }
+        document.getElementById("dailyTimetableDate").innerHTML = currentDate.toDateString();
+    }
+</script>
+
+<div class="widget-box-secondary rounded-corners animated-panel zoomIn" style="animation-delay: 0.2s;" >
+    <div class="widget-body rounded-corners paddingBottom10">
+        <div class="rounded-corners-top">
+                <div id="ctl00_PageContent_dailyTimetable_ttDateControl" class="center width200" style="margin: auto;">
+                    <div class="row-fluid secondary-widget-header">
+                        <a href="../VLE/WeeklyTimetable.aspx">
+                            Timetable
+                        </a>
+                    </div>
+                    <div class="row-fluid paddingRight10 paddingLeft10">
+                        <div id="ttToggle">
+                            <a href="#" class="fa fa-4x fa-caret-left pull-left blue-text marginTopMinus16"
+                               onclick=" previousDay();showNextDailyTTRotatorItem(Telerik.Web.UI.RotatorScrollDirection.Down); return false; "></a>
+                            <span id="dailyTimetableDate" class="bold">
+                                Thu Mar 12 2026
+                            </span>
+                            <a href="#" class="fa fa-4x fa-caret-right pull-right blue-text marginTopMinus16"
+                               onclick=" nextDay();showNextDailyTTRotatorItem(Telerik.Web.UI.RotatorScrollDirection.Up); return false; "></a>
+                        </div>                        
+                    </div>
+                </div>       
+        </div> 
+        <div class="widget-main no-padding">
+            <div class="row-fluid padding5 js-timetable-div">
+                <div id="ctl00_PageContent_dailyTimetable_udProgressWidget" style="display:none;position: relative;">
+		
+                        <div class="js-update-progress">
+                            <div id="refreshBackgroundFilter">
+                            </div>
+                            <div id="refreshMessage" class="badge badge-inverse border-2" style="width: 200px;">
+                                Refreshing Timetable<br /><img alt='' src="/images/loading_trans.gif" />
+                            </div>
+                        </div>
+                    
+	</div>                             
+                <div id="ctl00_PageContent_dailyTimetable_ttControl">
+                    <div id="ctl00_PageContent_dailyTimetable_RadRotator1" class="RadRotator RadRotator_Default" style="height:155px;width:100%;">
+		<!-- 2021.3.1111.45 --><div class="rrRelativeWrapper">
+			<div class="rrClipRegion">
+				<ul class="rrItemsList">
+					<li class="rrItem"><div id="ctl00_PageContent_dailyTimetable_RadRotator1_i0">
+						<div><div class="pupil-timetable-scroller span1 js-tt-direction-left"><img width="35" height="35" src="../images/pupilportal/left_arrow.png" onMouseDown="scrollTimetable(&#39;scrollTT2026-03-09&#39;, &#39;left&#39;)"></img></div><div id="scrollTT2026-03-09" class="timetable span10" style="overflow-x:hidden;"><table border="0" style="height:100%;width:100%;">
+							<tr>
+								<td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 1</strong><br />English as second language year 2/英语<br />08:25 - 09:25<br />NW407 Classroom<br />Lillian Luo</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="20"><div>09:25<br />09:45</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 2</strong><br />Edexcel AS Pure Math/Edexcel AS纯数<br />09:45 - 10:45<br />SE403 Classroom<br />Kate Wu</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>10:45<br />10:50</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 3</strong><br />Chemistry/化学<br />10:50 - 11:50<br />NE404 Classroom<br />Like Xing</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="45"><div>11:50<br />12:35</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 4</strong><br />Chinese/中文<br />12:35 - 13:35<br />NW407 Classroom<br />Rachel Pan</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>13:35<br />13:40</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 5</strong><br />Computer Science/计算机科学<br />13:40 - 14:40<br />SE412 Classroom<br />Naomi Ronquillo</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>14:40<br />14:45</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 6</strong><br />Spanish/西班牙语<br />14:45 - 15:45<br />NW404 Classroom<br />Anthony Rai</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="10"><div>15:45<br />15:55</div></td><td class="ttCard period Daily" colspan="45" style="background-color: White;color: Black; background-color: White; color: Black;"><div title="15:55 - 16:40
+CCA
+Q3 CCA
+Running - M
+Finian Simpkins
+GUIS, Outdoor, Runway
+Recurring Weekly" class="relative period">
+									<div class=" ttCellPadding" style="color: Black;">
+										<div></div><a class='ttClassLink hand activity-link' id='1381'><span class='ttLessonText'>Running - M<br />15:55 - 16:40<br />Runway<br />Finian Simpkins<br /></span></a>
+									</div>
+								</div></td>
+							</tr><tr>
+								<td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td>
+							</tr>
+						</table></div><div class="pupil-timetable-scroller span1 js-tt-direction-right"><img width="35" height="35" src="../images/pupilportal/right_arrow.png" onMouseDown="scrollTimetable(&#39;scrollTT2026-03-09&#39;, &#39;right&#39;)"></img></div></div>
+					</div></li><li class="rrItem"><div id="ctl00_PageContent_dailyTimetable_RadRotator1_i1">
+						<div><div class="pupil-timetable-scroller span1 js-tt-direction-left"><img width="35" height="35" src="../images/pupilportal/left_arrow.png" onMouseDown="scrollTimetable(&#39;scrollTT2026-03-10&#39;, &#39;left&#39;)"></img></div><div id="scrollTT2026-03-10" class="timetable span10" style="overflow-x:hidden;"><table border="0" style="height:100%;width:100%;">
+							<tr>
+								<td class="ttCard period overrideWidth Daily" colspan="30" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Homeroom/Assembly</strong><br />Homeroom<br />08:00 - 08:20<br />SW403 Classroom<br />Leo Kwong</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>08:20<br />08:25</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 1</strong><br />Edexcel AS Pure Math/Edexcel AS纯数<br />08:25 - 09:25<br />SE403 Classroom<br />Kate Wu</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="20"><div>09:25<br />09:45</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 2</strong><br />Spanish/西班牙语<br />09:45 - 10:45<br />NW404 Classroom<br />Anthony Rai</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>10:45<br />10:50</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 3</strong><br />Sociology/社会学<br />10:50 - 11:50<br />SW412 Classroom<br />Victor Wei</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="45"><div>11:50<br />12:35</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 4</strong><br />Physics/物理<br />12:35 - 13:35<br />NE408 Classroom<br />Clinton Gwanulla</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>13:35<br />13:40</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 5</strong><br />Chemistry/化学<br />13:40 - 14:40<br />NE401 Science Lab<br />Like Xing</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>14:40<br />14:45</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 6</strong><br />English as second language year 2/英语<br />14:45 - 15:45<br />NW407 Classroom<br />Lillian Luo</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td>
+							</tr><tr>
+								<td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td>
+							</tr>
+						</table></div><div class="pupil-timetable-scroller span1 js-tt-direction-right"><img width="35" height="35" src="../images/pupilportal/right_arrow.png" onMouseDown="scrollTimetable(&#39;scrollTT2026-03-10&#39;, &#39;right&#39;)"></img></div></div>
+					</div></li><li class="rrItem"><div id="ctl00_PageContent_dailyTimetable_RadRotator1_i2">
+						<div><div class="pupil-timetable-scroller span1 js-tt-direction-left"><img width="35" height="35" src="../images/pupilportal/left_arrow.png" onMouseDown="scrollTimetable(&#39;scrollTT2026-03-11&#39;, &#39;left&#39;)"></img></div><div id="scrollTT2026-03-11" class="timetable span10" style="overflow-x:hidden;"><table border="0" style="height:100%;width:100%;">
+							<tr>
+								<td class="ttCard period overrideWidth Daily" colspan="30" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Homeroom/Assembly</strong><br />Homeroom<br />08:00 - 08:20<br />SW403 Classroom<br />Leo Kwong</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>08:20<br />08:25</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 1</strong><br />Chinese/中文<br />08:25 - 09:25<br />NW407 Classroom<br />Rachel Pan</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="20"><div>09:25<br />09:45</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 2</strong><br />Physical Education/体育<br />09:45 - 10:45<br /><br />Michael Chen</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>10:45<br />10:50</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 3</strong><br />Sociology/社会学<br />10:50 - 11:50<br />SW412 Classroom<br />Victor Wei</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="245"><div>11:50<br />15:55</div></td><td class="ttCard period Daily" colspan="45" style="background-color: White;color: Black; background-color: White; color: Black;"><div title="15:55 - 16:40
+CCA
+Q3 CCA
+Speak and Perform - W
+Leah Muchuchu
+GUIS, Main Building, NW412 Classroom
+Recurring Weekly" class="relative period">
+									<div class=" ttCellPadding" style="color: Black;">
+										<div></div><a class='ttClassLink hand activity-link' id='1391'><span class='ttLessonText'>Speak and Perform - W<br />15:55 - 16:40<br />NW412 Classroom<br />Leah Muchuchu<br /></span></a>
+									</div>
+								</div></td>
+							</tr><tr>
+								<td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td>
+							</tr>
+						</table></div><div class="pupil-timetable-scroller span1 js-tt-direction-right"><img width="35" height="35" src="../images/pupilportal/right_arrow.png" onMouseDown="scrollTimetable(&#39;scrollTT2026-03-11&#39;, &#39;right&#39;)"></img></div></div>
+					</div></li><li class="rrItem"><div id="ctl00_PageContent_dailyTimetable_RadRotator1_i3">
+						<div><div class="pupil-timetable-scroller span1 js-tt-direction-left"><img width="35" height="35" src="../images/pupilportal/left_arrow.png" onMouseDown="scrollTimetable(&#39;scrollTT2026-03-12&#39;, &#39;left&#39;)"></img></div><div id="scrollTT2026-03-12" class="timetable span10" style="overflow-x:hidden;"><table border="0" style="height:100%;width:100%;">
+							<tr>
+								<td class="ttCard period overrideWidth Daily" colspan="30" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Homeroom/Assembly</strong><br />Homeroom<br />08:00 - 08:20<br />SW403 Classroom<br />Leo Kwong</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>08:20<br />08:25</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 1</strong><br />Physics/物理<br />08:25 - 09:25<br />NE407 Science Lab<br />Clinton Gwanulla</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="20"><div>09:25<br />09:45</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 2</strong><br />Chemistry/化学<br />09:45 - 10:45<br />NE404 Classroom<br />Like Xing</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>10:45<br />10:50</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 3</strong><br />Sociology/社会学<br />10:50 - 11:50<br />SW412 Classroom<br />Victor Wei</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="45"><div>11:50<br />12:35</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 4</strong><br />English as second language year 2/英语<br />12:35 - 13:35<br />NW407 Classroom<br />Lillian Luo</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>13:35<br />13:40</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 5</strong><br />Physical Education/体育<br />13:40 - 14:40<br /><br />Michael Chen</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>14:40<br />14:45</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 6</strong><br />Edexcel AS Pure Math/Edexcel AS纯数<br />14:45 - 15:45<br />SE403 Classroom<br />Kate Wu</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td>
+							</tr><tr>
+								<td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td>
+							</tr>
+						</table></div><div class="pupil-timetable-scroller span1 js-tt-direction-right"><img width="35" height="35" src="../images/pupilportal/right_arrow.png" onMouseDown="scrollTimetable(&#39;scrollTT2026-03-12&#39;, &#39;right&#39;)"></img></div></div>
+					</div></li><li class="rrItem"><div id="ctl00_PageContent_dailyTimetable_RadRotator1_i4">
+						<div><div class="pupil-timetable-scroller span1 js-tt-direction-left"><img width="35" height="35" src="../images/pupilportal/left_arrow.png" onMouseDown="scrollTimetable(&#39;scrollTT2026-03-13&#39;, &#39;left&#39;)"></img></div><div id="scrollTT2026-03-13" class="timetable span10" style="overflow-x:hidden;"><table border="0" style="height:100%;width:100%;">
+							<tr>
+								<td class="ttCard period overrideWidth Daily" colspan="30" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Homeroom/Assembly</strong><br />Homeroom<br />08:00 - 08:20<br />SW403 Classroom<br />Leo Kwong</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>08:20<br />08:25</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 1</strong><br />Seminar/升学指导<br />08:25 - 09:25<br />SW409 Classroom<br />Renee Chen</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="20"><div>09:25<br />09:45</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 2</strong><br />Spanish/西班牙语<br />09:45 - 10:45<br />NW404 Classroom<br />Anthony Rai</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>10:45<br />10:50</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 3</strong><br />Computer Science/计算机科学<br />10:50 - 11:50<br />SE412 Classroom<br />Naomi Ronquillo</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="45"><div>11:50<br />12:35</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 4</strong><br />English as second language year 2/英语<br />12:35 - 13:35<br />NW407 Classroom<br />Lillian Luo</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>13:35<br />13:40</div></td><td class="ttCard period Daily" colspan="40" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 5</strong><br />PSHE/个人/社交/健康课<br />13:40 - 14:20<br />SW403 Classroom<br />Leo Kwong</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td><td class="break timed" colspan="5"><div>14:20<br />14:25</div></td><td class="ttCard period Daily" colspan="60" style="background-color: #FFFFFF;"><div class="relative" style="color: #000000;">
+									<div class=" ttCellPadding" style="color: #000000;">
+										<div class='height35'></div><span class='ttLessonText'><strong>Period 6</strong><br />Edexcel AS Pure Math/Edexcel AS纯数<br />14:25 - 15:25<br />SE403 Classroom<br />Kate Wu</span>
+									</div><div class="padding0 paddingLeft5 height20 pdfHide">
+
+									</div>
+								</div></td>
+							</tr><tr>
+								<td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td><td class="spacer">&nbsp;</td>
+							</tr>
+						</table></div><div class="pupil-timetable-scroller span1 js-tt-direction-right"><img width="35" height="35" src="../images/pupilportal/right_arrow.png" onMouseDown="scrollTimetable(&#39;scrollTT2026-03-13&#39;, &#39;right&#39;)"></img></div></div>
+					</div></li>
+				</ul>
+			</div><a class="rrButton rrButtonUp p-icon p-i-arrow-up" href="javascript:void(0);">&nbsp;</a><a class="rrButton rrButtonLeft p-icon p-i-arrow-left" href="javascript:void(0);">&nbsp;</a><a class="rrButton rrButtonRight p-icon p-i-arrow-right" href="javascript:void(0);">&nbsp;</a><a class="rrButton rrButtonDown p-icon p-i-arrow-down" href="javascript:void(0);">&nbsp;</a>
+		</div><input id="ctl00_PageContent_dailyTimetable_RadRotator1_ClientState" name="ctl00_PageContent_dailyTimetable_RadRotator1_ClientState" type="hidden" />
+	</div>       
+                    <input type="hidden" name="ctl00$PageContent$dailyTimetable$removeDummyDayHiddenField" id="ctl00_PageContent_dailyTimetable_removeDummyDayHiddenField" value="0" />
+                </div>
+            </div>
+                                    <div class="row-fluid marginBottom5 js-swipe-message" style="display: none;">
+                <div class="span12 align-center">
+                    <strong class="muted-text">(Swipe to Scroll)</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+                            
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+ 
+                </div>
+
+                <div class="btn-scroll-up width100pc">
+                    <span class="btn-send-message left marginLeft10 js-btn-send-hidden" style="display: none; margin-bottom: 6px;">
+                        <button class="btn btn-minier btn-inverse js-btn-send-message" type="button">
+                            <span class="bigger-110">Send</span>
+                            <i class="ace-icon fa fa-send-o icon-on-right"></i>
+                        </button>
+                    </span>
+                    <a class="btn-scroll-up btn btn-sm btn-inverse" id="btn-scroll-up" href="#">
+                        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+                    </a>
+                </div>
+            </div>                
+  
+            <div id="navigationContainer" style="display: none;">
+                <div id="ctl00_pnlNavigation" class="navigation">
+	
+
+                    <div id="ctl00_setupContainer">
+
+                        <nav class="site-navigation sub-navigation pupil-portal-navigation">
+                            <ul>
+                                <li>
+                                    <ul class="userNav">                                    
+
+                                        <li id="ctl00_liViewPupilDetails">
+                                            <a href="PupilDetails.aspx">Student Details</a>
+                                        </li>
+
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                
+</div>
+            </div>
+                                         
+            <div id="outerHolder">
+                <div id="contentHolder">
+                    
+                </div>
+            </div>
+
+            
+
+            <div id="modalNoticeContentDiv" class="printHide">
+                <div id="divNewNotice" class="modalNotice none">
+                    <div class="modalNoticeContent">
+                        <div class="right">
+                            <a href="javascript:hide('divNewNotice');" title="Close">
+                                <img src="/images/icons/close.gif" alt="Close" /></a>
+                        </div>
+
+                        <div>
+                            <div class="left width100">
+                                <a style="text-decoration: none;" href="/default.aspx">You have a new notice from
+                                    <br />
+                                    <span id="senderName"></span></a>
+                            </div>
+                            <div class="right paddingRight10 paddingTop5">
+                                <img id="ctl00_imgNewNotice" src="/images/newNotice.jpg" alt="New Notice" style="border-width:0px;" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+            <div id="timeoutPage" class="printHide">
+                <div class="timeoutBackground">
+                </div>
+
+                <div class="timeoutContainer">
+                    <div id="timeoutMessage" class="center none rounded-corners" style="width: 300px; margin-left: -147px;">
+                        <div class="widget-box-secondary rounded-corners">
+                            <div class="widget-main">
+                                <div class="widget-content">
+                                    <h1>Attention!</h1>
+                                    <p>
+                                        <strong>
+                                            For security reasons, you will be logged out of the Portal if you are inactive for 2 hours.
+                                            <br />
+                                            <br />
+                                            This time is nearly up.</strong>
+                                    </p>
+                                    <p>
+                                        To keep your session alive, either save what you are working on or move to another page of the Portal. This will keep your session active for a further 2 hours.
+                                    </p>
+                                    <p>
+                                        You will lose any unsaved work if you do not keep your session alive
+                                    </p>
+                                    <div class="center">
+                                        <br />
+                                        <a href="javascript:hideTimeout()">
+                                            Click here to close this window</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="updateErrorMessage" class="center none" style="width: 300px; margin-left: -147px;">
+                        <div class="widget-box-secondary rounded-corners">
+                            <div class="widget-main">
+                                <div class="widget-content">
+                                    <img src="/images/warningTriangle.gif" width="80" height="70" class="left paddingRight10"
+                                         alt="" />
+                                    <div class="align-left">
+                                        <span class="paddingTop10">
+                                            An error occurred processing your request. Please try again.
+                                        </span>
+                                        <br />
+                                        <br />
+                                        <span>
+                                            If you continue to get this error ensure you have not been logged out.
+                                        </span>
+                                    </div>
+                                    <div class="center">
+                                        <br />
+                                        <a href="javascript:hideTimeout()">
+                                            Click here to close this window</a>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="id-confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+            
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Confirm Delete</h4>
+                        </div>
+            
+                        <div class="modal-body"></div>
+                
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-mini" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-danger btn-mini js-message-delete">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="modal fade" id="id-generic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+            
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body" style="overflow-y: auto;"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary btn-mini" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="dmsPPUploadModal" class="modal fade js-ppdmsUpload" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content" style="width: auto;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body" style="overflow-y: auto;"></div>
+                        <div class="modal-footer height35"></div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div id="dmsPPMoveCategoryModal" class="modal fade js-ppdmsMove" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body"></div>
+                        <div class="modal-footer height35"></div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div id="dmsPPCheckinModal" class="modal fade js-ppdmsCheckin" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body"></div>
+                        <div class="modal-footer height35"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>   
+    
+
+            <script>
+            var shouldShowProgress = false; // Flag to control the visibility based on user interaction
+
+            function updateProgressVisibility() {
+                if (shouldShowProgress && window.matchMedia('(max-width: 768px) and (orientation: portrait), (max-width: 1024px) and (orientation: landscape), (display-mode: standalone)').matches) {
+                    $('.progressContainer').fadeIn();
+                } else {
+                    $('.progressContainer').fadeOut();
+                }
+            }
+
+            window.addEventListener('beforeunload', function (e) {
+                shouldShowProgress = true;
+                updateProgressVisibility();
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                shouldShowProgress = false;
+                $('.progressContainer').fadeOut();
+            });
+
+            window.addEventListener('resize', updateProgressVisibility);
+            window.addEventListener('orientationchange', updateProgressVisibility);
+            </script>
+<script type="text/javascript">
+//<![CDATA[
+(function() {var fn = function() {$get("ctl00_ScriptManager1_HiddenField").value = '';Sys.Application.remove_init(fn);};Sys.Application.add_init(fn);})();
+                            // initiate the scrollable
+            $(function () {
+
+                // initialize scrollable with mousewheel support
+                $(".scrollable").scrollable({ vertical: true, mousewheel: true });
+
+            });;(function() {
+                        function loadHandler() {
+                            var hf = $get('ctl00_ctl18_TSSM');
+                            if (!hf._RSSM_init) { hf._RSSM_init = true; hf.value = ''; }
+                            hf.value += ';Telerik.Web.UI, Version=2021.3.1111.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4:en-GB:b406acc5-0028-4c73-8915-a9da355d848a:6de05185:f730aca1';
+                            Sys.Application.remove_load(loadHandler);
+                        };
+                        Sys.Application.add_load(loadHandler);
+                    })();Sys.Application.add_init(function() {
+    $create(Sys.UI._UpdateProgress, {"associatedUpdatePanelId":null,"displayAfter":100,"dynamicLayout":true}, null, null, $get("ctl00_PageContent_dailyTimetable_udProgressWidget"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadRotator, {"clientStateFieldID":"ctl00_PageContent_dailyTimetable_RadRotator1_ClientState","initialItemIndex":3,"items":[{},{},{},{},{}],"rotatorType":6,"scrollDirection":12,"skin":"Default"}, {"load":setNavigation}, null, $get("ctl00_PageContent_dailyTimetable_RadRotator1"));
+});
+//]]>
+</script>
+</form>
+    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+        <div class="slides"></div>
+        <h3 class="title width90pc"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
+    </div>
+    
+    <div id="mask"></div>
+   
+    <script language="javascript" type="text/javascript" src="/JS/bootstrap/bootstrap.min.js"></script>  
+    <script language="javascript" type="text/javascript" src="/JS/jquery.placeholder.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/bootstrap/themes/pupilportal/ace-elements.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/bootstrap/themes/pupilportal/ace.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/bootstrap/jquery.blueimp-gallery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/bootstrap/themes/pupilportal/editor.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/bootstrap/themes/pupilportal/PupilMailbox.source.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/touchPunch.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/pointer_events_polyfill.js"></script>
+    <script language="javascript" type="text/javascript" src="/JS/bootstrap/themes/pupilportal/WaitforAjax.js"></script>
+    <script type="text/javascript">
+        var hasRun = false;
+
+        //this runs after telerik stuff is done loading. jquery window load & doc ready do not,
+        //so we must use add_load.
+
+        //putting this in functions.js results in intermittent 'sys is undefined' error, so have
+        //put it at end of page here.
+
+        //16/2/15 - 6872 AK - additionally... in IE8 it seems the doc ready is not guaranteed to execute before add load, 
+        //therefore I've hacked it to add a delay on IE8. Otherwise room booking/performance tracking filters
+        //will break, amongst other things. If anyone can come up with a neater fix, feel free to replace this
+        //11/11/2015 - 8231 SW - also helps resolve an issue in IE10 where a screen refresh kills the timetable widget.
+        //if ($.browser.msie && parseInt($.browser.version) < 9) {
+        if(getInternetExplorerVersion() != -1 && (getInternetExplorerVersion() < 9 || getInternetExplorerVersion() == 10))
+        {
+            Sys.Application.add_load(function () { setTimeout(runOnLoadStuff, 1000); });
+        } else {
+            Sys.Application.add_load(runOnLoadStuff);
+        }
+
+        function runOnLoadStuff() {
+            var runOnLoadStuffAttempt = 0;
+
+            var tryRunningStuff = setInterval(function () {
+                    runOnLoadStuffAttempt++;
+
+                    if (!hasRun) {
+                        var i = onload_functions.length;
+                        while (i--) {
+                            eval(onload_functions[i]);
+                        }
+                    }
+
+                    if (runOnLoadStuffAttempt > 4 || onload_functions.length > 0) {
+                        hasRun = true; //to prevent this running on partial postbacks
+                        clearInterval(tryRunningStuff);
+                    }
+                },
+                200);
+
+            $('.fa-solid').removeClass('fa-solid').addClass('fa');
+            $('.fa-regular').removeClass('fa-regular').addClass('fa');
+            $('.fa-light').removeClass('fa-light').addClass('fa');
+            $('.fa-thin').removeClass('fa-thin').addClass('fa');
+            $('.fa-duotone').removeClass('fa-duotone').addClass('fa');
+        }
+
+        var elem = document.getElementById("links");
+        if (typeof elem !== 'undefined' && elem !== null) {
+            document.getElementById("links").onclick = function (event) {
+                event = event || window.event;
+                var target = event.target || event.srcElement,
+                    link = target.src ? target.parentNode : target,
+                    options = { index: link, event: event },
+                    links = this.getElementsByTagName('a');
+                blueimp.Gallery(links, options);
+            };
+        }
+
+        // IPAD double click a:hover fix
+        $(document).ready(function () {
+            $('a.js-ipadclickfix').on('click touchend', function (e) {
+                var el = $(this);
+                var link = el.attr('href');
+                window.location = link;
+            });
+            $('.primaryButton').removeClass('primaryButton secondaryColour').addClass('btn btn-primary btn-mini');
+        });
+    </script>
+</body>
+</html>
