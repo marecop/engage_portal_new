@@ -58,13 +58,13 @@ export default function Sidebar() {
         <motion.div
           className="w-9 h-9 rounded-xl flex items-center justify-center relative overflow-hidden"
           style={{
-            background: "var(--gradient-primary)",
-            boxShadow: "0 2px 12px rgba(var(--glow-rgb), 0.2)",
+            background: "#2E5CA8",
+            boxShadow: "0 2px 12px rgba(46,92,168,0.3)",
           }}
           whileHover={{ scale: 1.08, rotate: 5 }}
           transition={{ type: "spring", stiffness: 400, damping: 15 }}
         >
-          <GraduationCap className="w-5 h-5 text-white relative z-10" />
+          <img src="/logo_ulc.png" alt="ULC" className="w-7 h-7 object-contain relative z-10" />
         </motion.div>
         <span className="text-[16px] font-semibold tracking-tight" style={{ color: "var(--text-primary)" }}>
           Student Portal

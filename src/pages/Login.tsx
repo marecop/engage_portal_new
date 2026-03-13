@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, useMotionValue, useTransform } from "motion/react";
-import { GraduationCap, ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 
 // ─── Math ────────────────────────────────────────────────────────────────────
@@ -87,13 +87,14 @@ function drawBubble(
   borderGrad: CanvasGradient,
 ) {
   ctx.clearRect(0, 0, w, h);
+  const r = Math.max(1, baseR);
 
   ctx.beginPath();
   drawCatmullRom(ctx, pts);
   ctx.closePath();
 
   const alpha = lerp(0.45, 0.88, easeOutCubic(progress));
-  const fill = ctx.createRadialGradient(cx, cy, 0, cx, cy, baseR);
+  const fill = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
   fill.addColorStop(0,    `rgba(139,92,246,${alpha * 0.82})`);
   fill.addColorStop(0.22, `rgba(236,72,153,${alpha * 0.68})`);
   fill.addColorStop(0.44, `rgba(59,130,246,${alpha * 0.54})`);
@@ -181,8 +182,10 @@ function runTransition(
   function expandTick(now: number) {
     const elapsed = (now - expandStart) / 1000;
     const t = Math.min((now - expandStart) / expandDuration, 1);
-    const { points, cx, cy, baseR } = generateBubblePoints(btnRect, t, elapsed);
-    drawBubble(ctx, sw, sh, points, cx, cy, baseR, t, borderGrad);
+    try {
+      const { points, cx, cy, baseR } = generateBubblePoints(btnRect, t, elapsed);
+      drawBubble(ctx, sw, sh, points, cx, cy, baseR, t, borderGrad);
+    } catch { /* skip frame on canvas error */ }
 
     if (t < 1) {
       animId = requestAnimationFrame(expandTick);
@@ -427,16 +430,16 @@ export default function Login() {
           transition={{ delay: 0.2, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 relative"
-            style={{ background: "var(--gradient-primary)", boxShadow: "0 4px 20px rgba(var(--glow-rgb), 0.25)" }}
+            className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 relative overflow-hidden"
+            style={{ background: "#2E5CA8", boxShadow: "0 4px 20px rgba(46,92,168,0.35)" }}
             whileHover={{ scale: 1.06, rotate: 3 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            <GraduationCap className="w-8 h-8 text-white" />
+            <img src="/logo_ulc.png" alt="ULC" className="w-12 h-12 object-contain relative z-10" />
             <motion.div
               className="absolute inset-0 rounded-2xl"
-              style={{ background: "var(--gradient-primary)", opacity: 0.4 }}
+              style={{ background: "#2E5CA8", opacity: 0.4 }}
               animate={{ scale: [1, 1.6, 1.6], opacity: [0.4, 0, 0] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
             />
