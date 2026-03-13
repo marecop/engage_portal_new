@@ -43,8 +43,8 @@ export default function Home() {
       try {
         const cached = sessionStorage.getItem("activitiesData");
         if (cached) { setActivities(JSON.parse(cached).slice(0, 5)); setIsLoadingActivities(false); return; }
-        const response = await fetch("/api/activities", { 
-          headers: { "Authorization": `Bearer ${localStorage.getItem("authToken")}` }
+        const response = await fetch("/api/activities", {
+          credentials: "include"
         });
         if (response.status === 401) { setActivitiesError("登录已过期"); return; }
         if (!response.ok) throw new Error("Failed");
@@ -66,8 +66,8 @@ export default function Home() {
           setTodayClasses((d.lessons || []).filter((l: Lesson) => l.day === days[new Date().getDay()]));
           setIsLoadingClasses(false); return;
         }
-        const response = await fetch("/api/timetable", { 
-          headers: { "Authorization": `Bearer ${localStorage.getItem("authToken")}` }
+        const response = await fetch("/api/timetable", {
+          credentials: "include"
         });
         if (response.status === 401) { setClassesError("登录已过期"); return; }
         if (!response.ok) throw new Error("Failed");

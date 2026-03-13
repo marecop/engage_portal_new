@@ -11,9 +11,9 @@ export default function Layout() {
 
   useEffect(() => {
     const ctrl = new AbortController();
-    fetch("/api/me", { 
-      headers: { "Authorization": `Bearer ${localStorage.getItem("authToken")}` },
-      signal: ctrl.signal 
+    fetch("/api/me", {
+      credentials: "include",
+      signal: ctrl.signal
     })
       .then((res) => {
         if (ctrl.signal.aborted) return;

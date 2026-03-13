@@ -29,9 +29,9 @@ export default function Sidebar() {
 
   const handleLogout = async () => {
     try {
-      await fetch("/api/logout", { 
-        method: "POST", 
-        headers: { "Authorization": `Bearer ${localStorage.getItem("authToken")}` }
+      await fetch("/api/logout", {
+        method: "POST",
+        credentials: "include"
       });
     } catch (e) { /* ignore */ }
     sessionStorage.removeItem("activitiesData");

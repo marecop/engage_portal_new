@@ -42,8 +42,8 @@ export default function Schedule() {
       try {
         const cached = sessionStorage.getItem("timetableData");
         if (cached) { setLessons(JSON.parse(cached).lessons || []); setIsLoading(false); return; }
-        const response = await fetch("/api/timetable", { 
-          headers: { "Authorization": `Bearer ${localStorage.getItem("authToken")}` }
+        const response = await fetch("/api/timetable", {
+          credentials: "include"
         });
         if (response.status === 401) { setError("登录已过期"); return; }
         if (!response.ok) throw new Error("Failed");

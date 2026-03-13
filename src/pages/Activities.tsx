@@ -13,8 +13,8 @@ export default function Activities() {
       try {
         const cached = sessionStorage.getItem("activitiesData");
         if (cached) { setActivities(JSON.parse(cached)); setIsLoading(false); return; }
-        const response = await fetch("/api/activities", { 
-          headers: { "Authorization": `Bearer ${localStorage.getItem("authToken")}` }
+        const response = await fetch("/api/activities", {
+          credentials: "include"
         });
         if (response.status === 401) { setError("登录已过期"); return; }
         if (!response.ok) throw new Error("Failed");

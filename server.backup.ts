@@ -1,134 +1,41 @@
-import crypto from "node:crypto";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+/// <reference path="./session.d.ts" />
 import express from "express";
+import session from "express-session";
+import { createServer as createViteServer } from "vite";
 import cors from "cors";
 import axios from "axios";
 import * as cheerio from "cheerio";
 
-const PORT = Number(process.env.PORT || 3000);
-const SESSION_COOKIE_NAME = "portal_session";
-const SESSION_MAX_AGE_MS = 24 * 60 * 60 * 1000;
-const SESSION_SECRET = process.env.SESSION_SECRET || "portal-session-secret-change-in-production";
-const isVercel = Boolean(process.env.VERCEL);
-const isProd = process.env.NODE_ENV === "production" || isVercel;
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-type SessionPayload = {
-  authCookies: string;
-  pupilId?: string;
-  exp: number;
-};
-
-function parseCookies(header?: string): Record<string, string> {
-  if (!header) return {};
-  return header.split(";").reduce<Record<string, string>>((acc, part) => {
-    const [rawName, ...rawValue] = part.trim().split("=");
-    if (!rawName) return acc;
-    acc[rawName] = decodeURIComponent(rawValue.join("=") || "");
-    return acc;
-  }, {});
-}
-
-function encodeBase64Url(input: string) {
-  return Buffer.from(input, "utf8").toString("base64url");
-}
-
-function decodeBase64Url(input: string) {
-  return Buffer.from(input, "base64url").toString("utf8");
-}
-
-function sign(value: string) {
-  return crypto.createHmac("sha256", SESSION_SECRET).update(value).digest("base64url");
-}
-
-function createSessionToken(payload: SessionPayload) {
-  const encoded = encodeBase64Url(JSON.stringify(payload));
-  return `${encoded}.${sign(encoded)}`;
-}
-
-function readSession(req: express.Request): SessionPayload | null {
-  const token = parseCookies(req.headers.cookie)[SESSION_COOKIE_NAME];
-  if (!token) return null;
-
-  const [encoded, signature] = token.split(".");
-  if (!encoded || !signature) return null;
-  if (sign(encoded) !== signature) return null;
-
-  try {
-    const parsed = JSON.parse(decodeBase64Url(encoded)) as SessionPayload;
-    if (!parsed.authCookies || !parsed.exp || parsed.exp < Date.now()) {
-      return null;
-    }
-    return parsed;
-  } catch {
-    return null;
-  }
-}
-
-function cookieAttributes(maxAgeSeconds: number) {
-  const attrs = [
-    `Path=/`,
-    `HttpOnly`,
-    `Max-Age=${maxAgeSeconds}`,
-    isProd ? "SameSite=None" : "SameSite=Lax",
-  ];
-  if (isProd) attrs.push("Secure");
-  return attrs.join("; ");
-}
-
-function appendSetCookie(res: express.Response, cookie: string) {
-  const current = res.getHeader("Set-Cookie");
-  if (!current) {
-    res.setHeader("Set-Cookie", cookie);
-    return;
-  }
-  if (Array.isArray(current)) {
-    res.setHeader("Set-Cookie", [...current, cookie]);
-    return;
-  }
-  res.setHeader("Set-Cookie", [String(current), cookie]);
-}
-
-function writeSession(res: express.Response, payload: Omit<SessionPayload, "exp"> & { exp?: number }) {
-  const fullPayload: SessionPayload = {
-    ...payload,
-    exp: payload.exp ?? Date.now() + SESSION_MAX_AGE_MS,
-  };
-  const token = createSessionToken(fullPayload);
-  appendSetCookie(
-    res,
-    `${SESSION_COOKIE_NAME}=${encodeURIComponent(token)}; ${cookieAttributes(Math.floor(SESSION_MAX_AGE_MS / 1000))}`,
-  );
-}
-
-function clearSession(res: express.Response) {
-  appendSetCookie(
-    res,
-    `${SESSION_COOKIE_NAME}=; Path=/; HttpOnly; Max-Age=0; ${isProd ? "SameSite=None; Secure" : "SameSite=Lax"}`,
-  );
-}
-
-function getAuthCookies(req: express.Request): string | null {
-  return readSession(req)?.authCookies ?? null;
-}
-
-function updateSession(res: express.Response, req: express.Request, patch: Partial<SessionPayload>) {
-  const existing = readSession(req);
-  if (!existing) return;
-  writeSession(res, { ...existing, ...patch });
-}
-
-async function createApp() {
+async function startServer() {
   const app = express();
   app.set("trust proxy", true);
+  const PORT = 3000;
 
+  // CORS: must allow credentials and specific origin (not *) for cookies
   app.use(cors({
-    origin: true,
+    origin: true, // reflects request origin (e.g. http://localhost:3000)
     credentials: true,
   }));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+
+  const isProd = process.env.NODE_ENV === "production";
+  app.use(session({
+    secret: process.env.SESSION_SECRET || "portal-session-secret-change-in-production",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: isProd,          // false in dev (http://localhost), true in production (https)
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: isProd ? "none" : "lax",
+    },
+  }));
+
+  // Helper: get auth cookies from server-side session
+  const getAuthCookies = (req: express.Request): string | null => {
+    return req.session?.authCookies ?? null;
+  };
 
   // Disable ETag for all API routes to prevent 304 caching of user-specific data
   app.use("/api", (req, res, next) => {
@@ -144,7 +51,7 @@ async function createApp() {
   });
 
   app.get("/api/me", (req, res) => {
-    if (readSession(req)?.authCookies) {
+    if (req.session?.authCookies) {
       return res.json({ authenticated: true });
     }
     return res.status(401).json({ authenticated: false });
@@ -226,14 +133,16 @@ async function createApp() {
           ...validAuthCookies
         ].filter(Boolean).join("; ");
 
-        // Vercel-compatible session: store upstream cookies in a signed httpOnly cookie.
-        writeSession(res, { authCookies: allCookies });
+        // Store cookies server-side in session (no token sent to client)
+        req.session.authCookies = allCookies;
+        await new Promise<void>((resolve, reject) =>
+          req.session.save(err => (err ? reject(err) : resolve()))
+        );
         return res.json({ success: true });
       }
 
       // If we didn't get the expected redirect, login probably failed (e.g., wrong password)
       return res.status(401).json({ error: "Invalid username or password" });
-
     } catch (error: any) {
       console.error("Login error:", error.message);
       return res.status(500).json({ error: "An error occurred during login" });
@@ -260,8 +169,13 @@ async function createApp() {
       }
     }
 
-    clearSession(res);
-    res.json({ success: true, message: "Logged out successfully" });
+    req.session.destroy((err) => {
+      if (err) {
+        console.error("Logout session destroy error:", err);
+        return res.status(500).json({ error: "Logout failed" });
+      }
+      res.json({ success: true, message: "Logged out successfully" });
+    });
   });
 
   app.get("/api/activities", async (req, res) => {
@@ -630,7 +544,7 @@ async function createApp() {
       }
 
       if (result.pupilId) {
-        updateSession(res, req, { pupilId: result.pupilId });
+        req.session.pupilId = result.pupilId;
       }
 
       return res.json(result);
@@ -736,30 +650,21 @@ async function createApp() {
     }
   });
 
-  if (!isVercel && process.env.NODE_ENV !== "production") {
-    const { createServer: createViteServer } = await import("vite");
+  // Vite middleware for development
+  if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
     });
     app.use(vite.middlewares);
-  } else if (!isVercel) {
-    const distDir = path.join(__dirname, "dist");
-    app.use(express.static(distDir));
-    app.get("*", (_req, res) => {
-      res.sendFile(path.join(distDir, "index.html"));
-    });
+  } else {
+    // Serve static files in production
+    app.use(express.static("dist"));
   }
 
-  return app;
-}
-
-const app = await createApp();
-
-export default app;
-
-if (!isVercel) {
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${PORT}`);
   });
 }
+
+startServer();

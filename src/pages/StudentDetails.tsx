@@ -33,7 +33,7 @@ export default function StudentDetails() {
     (async () => {
       try {
         const res = await fetch("/api/student-details", {
-          headers: { "Authorization": `Bearer ${localStorage.getItem("authToken")}` },
+          credentials: "include",
           signal: ctrl.signal,
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);

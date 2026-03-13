@@ -20,13 +20,14 @@ export default function Login() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
+        credentials: "include",
       });
       const data = await response.json();
 
       if (response.ok && data.success) {
         sessionStorage.removeItem("activitiesData");
         sessionStorage.removeItem("timetableData");
-        localStorage.setItem("authToken", data.token);
+        localStorage.setItem("authToken", "logged-in");
         navigate("/home");
       } else {
         setError(data.error || "Login failed. Please check your credentials.");
